@@ -372,13 +372,13 @@ document.write(`
 <section id="conceptos-basicos">
 <h2><span class="section-number">5.1. </span>Conceptos básicos<a class="headerlink" href="#conceptos-basicos" title="Permalink to this heading">#</a></h2>
 <p><strong>Muestra o muestra aleatoria:</strong></p>
-<p>Sean <span class="math notranslate nohighlight">\(X_1,\cdots,X_n\)</span> variables aleatorias i.i.d. de distribución <span class="math notranslate nohighlight">\(F\)</span>, entonces los valores que toman dichas variables <span class="math notranslate nohighlight">\(\{x_1,\cdots,x_n\}\)</span> representan una muestra aleatoria de la distribución <span class="math notranslate nohighlight">\(F\)</span>.</p>
+<p>Sean <span class="math notranslate nohighlight">\(X_1,\cdots,X_n\)</span> variables aleatorias i.i.d. de una distribución <span class="math notranslate nohighlight">\(F\)</span> (usabmos <span class="math notranslate nohighlight">\(F\)</span> para referirnos a cualquier distribución en esta lección), entonces los valores que toman dichas variables <span class="math notranslate nohighlight">\(\{x_1,\cdots,x_n\}\)</span> representan una muestra aleatoria de la distribución <span class="math notranslate nohighlight">\(F\)</span>.</p>
 <p><strong>Estadístico o estadístico muestral:</strong></p>
 <p>Es una variable aleatoria cuyo valor se puede determinar a partir de los datos muestrales usando un operador (función) <span class="math notranslate nohighlight">\(T\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[Y = T(X_1,\cdots, X_n) \in \mathbb{R}\]</div>
 <p>Ejemplos: media muestral, varianza muestral.</p>
-<p><strong>Distribución de muestreo o distribución muestral:</strong></p>
+<p><strong>Distribución muestral o distribución de muestreo (sampling distribution):</strong></p>
 <p>Es la distribución de probabilidad de un estadístico dado.
 <br><br></p>
 </section>
@@ -388,8 +388,8 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\bar{X} = \frac{1}{n}{\displaystyle \sum_{i=1}^n} X_i\]</div>
 <p>La distribución muestral de <span class="math notranslate nohighlight">\(\bar X\)</span> con tamaño muestral <span class="math notranslate nohighlight">\(n\)</span> es la distribución que resulta cuando un experimento se lleva a cabo una y otra vez (siempre con una muestra de tamaño <span class="math notranslate nohighlight">\(n\)</span>) y resultan los diversos valores de <span class="math notranslate nohighlight">\(\bar X\)</span>. Esta distribución tiene siguientes propiedades:</p>
-<p><strong>Propiedades</strong>
-Sean <span class="math notranslate nohighlight">\(X_1,\cdots,X_n\)</span> v.a. i.i.d. <span class="math notranslate nohighlight">\(\sim F\)</span>, <span class="math notranslate nohighlight">\(\mu = E[X_i], \sigma^2 = Var(X_i)\)</span> media y varianza teórica de <span class="math notranslate nohighlight">\(F\)</span>.
+<p><strong>Propiedades</strong></p>
+<p>Sean <span class="math notranslate nohighlight">\(X_1,\cdots,X_n\)</span> v.a. i.i.d. <span class="math notranslate nohighlight">\(\sim F\)</span>, <span class="math notranslate nohighlight">\(\mu = E[X_i], \sigma^2 = Var(X_i)\)</span> media y varianza teórica de <span class="math notranslate nohighlight">\(F\)</span>.
 Entonces se cumple:</p>
 <div class="math notranslate nohighlight">
 \[E[\bar{X}]= E \left(\frac{1}{n}\sum_{i=1}^n X_i\right)
