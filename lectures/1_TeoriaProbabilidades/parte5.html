@@ -374,9 +374,9 @@ document.write(`
 <p><strong>Muestra o muestra aleatoria:</strong></p>
 <p>Sean <span class="math notranslate nohighlight">\(X_1,\cdots,X_n\)</span> variables aleatorias i.i.d. de una distribución <span class="math notranslate nohighlight">\(F\)</span> (usabmos <span class="math notranslate nohighlight">\(F\)</span> para referirnos a cualquier distribución en esta lección), entonces los valores que toman dichas variables <span class="math notranslate nohighlight">\(\{x_1,\cdots,x_n\}\)</span> representan una muestra aleatoria de la distribución <span class="math notranslate nohighlight">\(F\)</span>.</p>
 <p><strong>Estadístico o estadístico muestral:</strong></p>
-<p>Es una variable aleatoria cuyo valor se puede determinar a partir de los datos muestrales usando un operador (función) <span class="math notranslate nohighlight">\(T\)</span>:</p>
+<p>Es una variable aleatoria <span class="math notranslate nohighlight">\(Y\)</span> cuyo valor se puede determinar a partir de los valores <span class="math notranslate nohighlight">\(x_1, x_2 ..., x_n\)</span> de las v.a. <span class="math notranslate nohighlight">\(X_1, X_2, ... X_n\)</span> usando una función <span class="math notranslate nohighlight">\(T\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[Y = T(X_1,\cdots, X_n) \in \mathbb{R}\]</div>
+\[Y(\omega) = y = T(x_1,\cdots, x_n) \in \mathbb{R}\]</div>
 <p>Ejemplos: media muestral, varianza muestral.</p>
 <p><strong>Distribución muestral o distribución de muestreo (sampling distribution):</strong></p>
 <p>Es la distribución de probabilidad de un estadístico dado.
@@ -384,7 +384,7 @@ document.write(`
 </section>
 <section id="media-muestral">
 <h2><span class="section-number">5.2. </span>Media muestral<a class="headerlink" href="#media-muestral" title="Permalink to this heading">#</a></h2>
-<p>Sean <span class="math notranslate nohighlight">\(X_1,\cdots,X_n\)</span> v.a. i.i.d. de distribución <span class="math notranslate nohighlight">\(F\)</span> entonces se define la media muestral como:</p>
+<p>Sean <span class="math notranslate nohighlight">\(X_1,\cdots,X_n\)</span> v.a. i.i.d. de distribución <span class="math notranslate nohighlight">\(F\)</span> entonces se define la <strong>media muestral</strong> como:</p>
 <div class="math notranslate nohighlight">
 \[\bar{X} = \frac{1}{n}{\displaystyle \sum_{i=1}^n} X_i\]</div>
 <p>La distribución muestral de <span class="math notranslate nohighlight">\(\bar X\)</span> con tamaño muestral <span class="math notranslate nohighlight">\(n\)</span> es la distribución que resulta cuando un experimento se lleva a cabo una y otra vez (siempre con una muestra de tamaño <span class="math notranslate nohighlight">\(n\)</span>) y resultan los diversos valores de <span class="math notranslate nohighlight">\(\bar X\)</span>. Esta distribución tiene siguientes propiedades:</p>
@@ -411,10 +411,10 @@ Entonces se cumple:</p>
 </section>
 <section id="varianza-muestral">
 <h2><span class="section-number">5.3. </span>Varianza muestral<a class="headerlink" href="#varianza-muestral" title="Permalink to this heading">#</a></h2>
-<p>Sean <span class="math notranslate nohighlight">\(X_1,\cdots,X_n\)</span> v.a. i.i.d de distribución <span class="math notranslate nohighlight">\(F\)</span> entonces se define la varianza muestral como:</p>
+<p>Sean <span class="math notranslate nohighlight">\(X_1,\cdots,X_n\)</span> v.a. i.i.d de distribución <span class="math notranslate nohighlight">\(F\)</span> entonces se define la <strong>varianza muestral</strong> como:</p>
 <div class="math notranslate nohighlight">
 \[S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2 \]</div>
-<p>La desviación estándar muestral se define como</p>
+<p>La <strong>desviación estándar muestral</strong> se define como</p>
 <div class="math notranslate nohighlight">
 \[S = \sqrt{ \frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2 }\]</div>
 <p><strong>Propiedades</strong></p>
