@@ -384,7 +384,7 @@ document.write(`
 </ul>
 <p><strong>Experimento, Espacio Muestral, Evento, Elemento</strong></p>
 <ul class="simple">
-<li><p>Experimento: fenómeno aleatorio</p></li>
+<li><p>Experimento: (una realización de un) fenómeno aleatorio</p></li>
 <li><p>Espacio Muestral (<span class="math notranslate nohighlight">\(\Omega\)</span>): conjunto de todos los posibles valores que puede tomar un experimento.</p></li>
 <li><p>Evento (<span class="math notranslate nohighlight">\(A\)</span>): cualquier subconjunto del espacio muestral. Un evento puede tener uno o múltiple elementos.</p>
 <ul>
@@ -393,29 +393,33 @@ document.write(`
 </li>
 <li><p>Elemento or resultado de la muestra (<span class="math notranslate nohighlight">\(\omega\)</span>): cada punto o valor en el espacio muestral.</p></li>
 </ul>
-<p>Ejemplo 1: Si lanzamos una moneda una vez, entonces</p>
+<p>Ejemplo 1:</p>
 <ul class="simple">
+<li><p>Experimento: el lanzamiento de una moneda una vez</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Omega\)</span> = {C,S} (C:cara, S:sello)</p></li>
 <li><p>El evento que el lanzamiento es una cara es A = {C}</p></li>
 <li><p>El resultado de un experimento donde el lanzamiento es una caba es <span class="math notranslate nohighlight">\(\omega\)</span> = {C}</p></li>
 </ul>
 <p>Ejemplo 2: Si lanzamos una moneda dos veces, entonces</p>
+<div class="toggle docutils container">
 <ul class="simple">
+<li><p>Experimento: el lanzamiento de una moneda dos veces</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Omega\)</span> = {CC,CS,SC,SS}</p></li>
 <li><p>El evento que el primer lanzamiento es una cara es A = {CC,CS}</p></li>
 <li><p>El resultado de un experimento donde ambos lanzamientos son caras es <span class="math notranslate nohighlight">\(\omega\)</span> = {CC}</p></li>
 </ul>
+</div>
 <section id="probabilidades">
 <h2><span class="section-number">1.1. </span>Probabilidades<a class="headerlink" href="#probabilidades" title="Permalink to this heading">#</a></h2>
 <p>¿Qué tan posible es que un evento ocurra?</p>
+<p>La probabilidad es un <em>lenguaje</em> matemático para cuantificar la <strong>incertidumbre</strong>.</p>
 <p>El grado de posibilidad de la ocurrencia de un evento que resulta de un experimento estadístico se evalúa utilizando un conjunto de números reales denominados <strong>probabilidades</strong>, que van de 0 a 1 (inclusivo).</p>
-<p>La probabilidad es un lenguaje matemático para cuantificar la incertidumbre.</p>
 <p><strong>¿Cómo asignamos valores de probabilidad?</strong></p>
-<p>Volvamos al ejemplo del lanzamiento de la moneda (ejemplo 1):</p>
+<p>Volvamos al ejemplo del lanzamiento de la moneda una vez, cuál es la probabilidad de que tengamos una cara?</p>
 <ul class="simple">
-<li><p>Si es justa?</p></li>
-<li><p>Si no estás segura que es justa?</p></li>
-<li><p>Si tienes el conocimiento de tu amiga?</p></li>
+<li><p>Si la moneda es justa</p></li>
+<li><p>Si la moneda no es justa, pero no sabemos qué tan injusta es</p></li>
+<li><p>Si te digo que la moneda tiene una cara tipo 90% del tiempo, pero no estoy segura?</p></li>
 </ul>
 <p>Tenemos tres maneras para calcular la probabilidad:</p>
 <ul class="simple">
@@ -447,7 +451,8 @@ document.write(`
 <p>que cumple lo siguiente (tres axiomas de Kolmogórov):</p>
 <p><span class="math notranslate nohighlight">\(\begin{array}{ll} 1. &amp; \forall A \subset \Omega, P(A) \geq 0 \quad \text{(axioma 1)}\\
 2. &amp;  P(\Omega) = 1 \quad \text{(axioma 2)}\\
-3. &amp; Sean \,\, A_1,...,A_n \subseteq \Omega, A_i \cap A_j =\phi, \forall i,j=1...n =&gt; P(A_1\cup...\cup A_n) = P(A_1)+...+P(A_n) \quad \text{(axioma 3)}\\
+3. &amp; Sean \,\, A_1,...,A_n \subseteq \Omega, A_i \cap A_j =\phi, \forall i,j=1...n , i \neq j  \\
+&amp; =&gt; P(A_1\cup...\cup A_n) = P(A_1)+...+P(A_n) \quad \text{(axioma 3)}
 \end{array}\)</span></p>
 <p>En el último axioma, los eventos son mutuamente excluyentes o disjuntos (no tienen elementos en común).</p>
 <p><strong>Propiedades</strong></p>
@@ -460,6 +465,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\( P(A) \leq 1 \)</span> <span class="math notranslate nohighlight">\(\qquad\)</span> (límite numérico)</p></li>
 <li><p><span class="math notranslate nohighlight">\( P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span> <span class="math notranslate nohighlight">\(\qquad\)</span> (regla de adición)</p></li>
 </ol>
+<p>Podemos usar <a class="reference external" href="https://en.wikipedia.org/wiki/Naive_set_theory">Teoría informal de conjuntos</a> y <a class="reference external" href="https://en.wikipedia.org/wiki/Venn_diagram#Overview">Diagrama de Venn</a> para demonstrar las propiedades.</p>
 </section>
 <section id="probabilidades-condicionales">
 <h3><span class="section-number">1.1.2. </span>Probabilidades condicionales<a class="headerlink" href="#probabilidades-condicionales" title="Permalink to this heading">#</a></h3>
