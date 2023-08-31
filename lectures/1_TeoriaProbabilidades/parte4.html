@@ -464,22 +464,32 @@ Curtosis(X) &amp; = &amp; 9 \\
 <img alt="../../_images/c8f0a11a604c5c579b952ff044c51a541a0e41889179a27f0daa8a4033501565.png" src="../../_images/c8f0a11a604c5c579b952ff044c51a541a0e41889179a27f0daa8a4033501565.png" />
 </div>
 </div>
+<p>Ejemplos:</p>
+<ul class="simple">
+<li><p>La cantidad de dinero que los clientes gastan en un viaje al supermercado (es decir, hay más personas que gastan pequeñas cantidades de dinero y menos personas que gastan grandes cantidades de dinero)</p></li>
+<li><p>El valor del cambio que tienes en tu bolsillo o bolso</p></li>
+<li><p>La cantidad de tiempo (en meses) que dura una batería de automóvil</p></li>
+</ul>
 </section>
 <section id="distribucion-normal-o-gaussiana">
 <h2><span class="section-number">4.4. </span>Distribución Normal o Gaussiana<a class="headerlink" href="#distribucion-normal-o-gaussiana" title="Permalink to this heading">#</a></h2>
 <p>Sea <span class="math notranslate nohighlight">\(X\)</span> v.a. continua, es normal de media <span class="math notranslate nohighlight">\(\mu\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span> y se denota <span class="math notranslate nohighlight">\(\cal{N}(\mu,\sigma^2)\)</span> si su densidad de probabilidad cumple:</p>
 <p><span class="math notranslate nohighlight">\(\begin{array}{lll} 
-f(x) &amp; = &amp; \frac{1}{\sqrt{2\pi}\sigma} exp(\frac{-(x-\mu)^2}{2\sigma^2}),\qquad x \in \mathbb{R}\\
+f(x) &amp; = &amp; \frac{1}{\sigma\sqrt{2\pi}} exp(\frac{-(x-\mu)^2}{2\sigma^2}),\qquad x \in \mathbb{R}\\
 E[X] &amp;= &amp;\mu\\
 Var(X)&amp; =&amp; \sigma^2\\
 Asimetria(X) &amp; = &amp; 0\\
 Curtosis(X) &amp; = &amp; 3 \\
 \end{array}\)</span></p>
-<p>Esta es la distribución de probabilidad mas utilizada. Muchas variables se distribuyen aproximadamente normales (altura, peso, satisfacción en el trabajo, etc.).</p>
-<p>Permite modelar los errores o ruidos.</p>
-<p>Teorema de límite central, tests de hipótesis paramétricos, inferencia estadística clásica.</p>
+<p>Esta es la distribución de probabilidad mas utilizada.</p>
+<ul class="simple">
+<li><p>Muchas variables se distribuyen aproximadamente normales (altura, peso, satisfacción en el trabajo, etc.). También permite modelar los errores o ruidos.</p></li>
+<li><p>La usamos en Teorema de límite central, tests de hipótesis paramétricos, inferencia estadística clásica.</p></li>
+</ul>
 <p>¿Cómo se verifica que una v.a. sigue una distribución normal?</p>
-<p>Test de normalidad de Shapiro-Wilk, Q-Q plot</p>
+<ul class="simple">
+<li><p>Test de normalidad de Shapiro-Wilk, K-S, Q-Q plot</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">##Distribución Gaussiana</span>
@@ -528,7 +538,7 @@ Var(X)&amp; =&amp;1\\
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <ul class="simple">
-<li><p>Estandarización no es para transformar una distribución a una distribución normal. Si la distribución antes de estandarización <em>no es</em> normal, la distribución después de la estandarización <em>tampoco</em> es normal.</p></li>
+<li><p>Estandarización <strong>no es</strong> para transformar una distribución a una distribución normal. Si la distribución antes de estandarización <em>no es</em> normal, la distribución después de la estandarización <em>tampoco</em> es normal.</p></li>
 <li><p>Para algunos ML algoritmos o modelos estadísticos, estandarización es importante porque lleva diferentes variables a una escala comparable, incluso si la v.a. no cumple el supuesto de normalidad.</p></li>
 </ul>
 </div>
