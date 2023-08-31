@@ -392,22 +392,33 @@ document.write(`
 <p>Sean <span class="math notranslate nohighlight">\(X_1,\cdots,X_n\)</span> v.a. i.i.d. <span class="math notranslate nohighlight">\(\sim F\)</span>, <span class="math notranslate nohighlight">\(\mu = E[X_i], \sigma^2 = Var(X_i)\)</span> media y varianza teórica de <span class="math notranslate nohighlight">\(F\)</span>.
 Entonces se cumple:</p>
 <div class="math notranslate nohighlight">
+\[E[\bar{X}] = \mu\]</div>
+<p>Por qué?</p>
+<div class="toggle docutils container">
+<div class="math notranslate nohighlight">
 \[E[\bar{X}]= E \left(\frac{1}{n}\sum_{i=1}^n X_i\right)
   = \frac{1}{n} \sum_{i=1}^n E[X_i]
   = \frac{1}{n} \sum_{i=1}^n \mu = \mu\]</div>
-<p>con lo cual <span class="math notranslate nohighlight">\(\bar{X}\)</span> es un <strong>estimador insesgado</strong> de <span class="math notranslate nohighlight">\(\mu\)</span>. (Veamos el insesgadez de estimadores en el futuro)</p>
+</div>
+<p>con lo cual <span class="math notranslate nohighlight">\(\bar{X}\)</span> es un <em>estimador insesgado</em> de <span class="math notranslate nohighlight">\(\mu\)</span>. (Veamos el insesgadez de estimadores en el futuro)</p>
+<p>También se cumple:</p>
+<div class="math notranslate nohighlight">
+\[Var(\bar{X}) = \frac{\sigma^2}{n}\]</div>
+<p>Por qué?</p>
+<div class="toggle docutils container">
 <div class="math notranslate nohighlight">
 \[Var(\bar{X})= Var \left(\frac{1}{n}\sum_{i=1}^n X_i\right)
   = \frac{1}{n^2} \sum_{i=1}^n Var(X_i)
   = \frac{1}{n^2} \sum_{i=1}^n \sigma^2 = \frac{\sigma^2}{n}\]</div>
+</div>
 <p>Por qué <span class="math notranslate nohighlight">\(Var(\sum_{i=1}^n \limits X_i) = \sum_{i=1}^n \limits Var(X_i)\)</span>?</p>
+<div class="toggle docutils container">
 <p>Usamos estas propiedades para v.a. <span class="math notranslate nohighlight">\(X_i, X_j\)</span>:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(Var(X_i+X_j) = Var(X_i) + Var(X_j) + 2Cov(X_i,X_j)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(Cov(X_i, X_j) =  E[X_i X_j] - \mu_{X_i} \mu_{X_j}\)</span>, donde <span class="math notranslate nohighlight">\(\mu_{X_i} = E[X_i]\)</span> y <span class="math notranslate nohighlight">\( \mu_{X_j}= E[X_j]\)</span></p></li>
-<li><p>Si <span class="math notranslate nohighlight">\(X_i\)</span> y <span class="math notranslate nohighlight">\(X_j\)</span> son dos v.a. independientes, entonces <span class="math notranslate nohighlight">\(E[X_i X_j] = E[X_i]E[X_j]\)</span>.</p></li>
-<li><p>Si <span class="math notranslate nohighlight">\(X_i\)</span> y <span class="math notranslate nohighlight">\(X_j\)</span> son dos v.a. independientes, entonces <span class="math notranslate nohighlight">\(Cov(X_i, X_j) = E[X_i X_j] - \mu_{X_i} \mu_{X_j} = E[X_i]E[X_j] - \mu_{X_i} \mu_{X_j}= 0\)</span>.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(X_i\)</span> y <span class="math notranslate nohighlight">\(X_j\)</span> son dos v.a. independientes, entonces <span class="math notranslate nohighlight">\(Var(X_i+X_j) = Var(X_i) + Var(X_j)\)</span></p></li>
 </ul>
+</div>
 </section>
 <section id="varianza-muestral">
 <h2><span class="section-number">5.3. </span>Varianza muestral<a class="headerlink" href="#varianza-muestral" title="Permalink to this heading">#</a></h2>
@@ -417,22 +428,29 @@ Entonces se cumple:</p>
 <p>La <strong>desviación estándar muestral</strong> se define como</p>
 <div class="math notranslate nohighlight">
 \[S = \sqrt{ \frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2 }\]</div>
-<p><strong>Propiedades</strong></p>
+<p>Se cumple:</p>
+<div class="math notranslate nohighlight">
+\[E[S^2] = \sigma^2\]</div>
+<p>Por qué?</p>
+<div class="toggle docutils container">
 <div class="math notranslate nohighlight">
 \[ (n-1) S^2 = \sum_{i=1}^n(X_i - \bar{X})^2 = \sum_{i=1}^nX_i^2 - 2\bar{X}\sum_{i=1}^n X_i + n\bar{X}^2 = \sum_{i=1}^nX_i^2 - n\bar{X}^2
 \]</div>
 <p>Entonces:</p>
 <div class="math notranslate nohighlight">
-\[E(S^2)= E \left[\frac{1}{n-1}\left(\sum_{i=1}^nX_i^2 - n\bar{X}^2\right)\right]
+\[E[S^2]= E \left[\frac{1}{n-1}\left(\sum_{i=1}^nX_i^2 - n\bar{X}^2\right)\right]
   = \frac{1}{n-1} \left(\sum_{i=1}^n E[X_i^2] - n E[\bar{X}^2]\right)\]</div>
 <p>Dado que</p>
 <div class="math notranslate nohighlight">
-\[E[X_i^2] = \sigma^2 + \mu^2\qquad \text{y} \qquad E[\bar{X}^2]= \frac{\sigma^2}{n} + \mu^2\]</div>
+\[E[X_i^2] = \sigma^2 + \mu^2\]</div>
+<div class="math notranslate nohighlight">
+\[E[\bar{X}^2]= \frac{\sigma^2}{n} + \mu^2\]</div>
 <p>entonces</p>
 <div class="math notranslate nohighlight">
-\[E(S^2)=\frac{1}{n-1}\left(n\sigma^2+n\mu^2 - n\frac{\sigma^2}{n} - n\mu^2\right)
+\[E[S^2]=\frac{1}{n-1}\left(n\sigma^2+n\mu^2 - n\frac{\sigma^2}{n} - n\mu^2\right)
       = \frac{n-1}{n-1}\sigma^2 = \sigma^2\]</div>
-<p>De esta manera <span class="math notranslate nohighlight">\(S^2\)</span> es un <strong>estimador insesgado</strong> de <span class="math notranslate nohighlight">\(\sigma^2\)</span>. (Veamos el insesgadez de estimadores en el futuro.)</p>
+</div>
+<p>De esta manera <span class="math notranslate nohighlight">\(S^2\)</span> es un <em>estimador insesgado</em> de <span class="math notranslate nohighlight">\(\sigma^2\)</span>. (Veamos el insesgadez de estimadores en el futuro.)</p>
 </section>
 </section>
 
