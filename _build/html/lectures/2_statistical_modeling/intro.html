@@ -409,16 +409,27 @@ document.write(`
 <p>En el caso específico del modelamiento también se puede hacer la distinción anterior:</p>
 <p><strong>Modelos paramétricos:</strong></p>
 <ul class="simple">
-<li><p>Hacen supuestos sobre la distribución de probabilidad de los datos</p></li>
-<li><p>(En el caso bayesiano también se supone una distribución para los parámetros del modelo)</p></li>
+<li><p>Características claves:</p>
+<ul>
+<li><p>Hacen supuestos sobre la distribución de probabilidad de los datos (En el caso bayesiano también se supone una distribución para los parámetros del modelo).</p></li>
 <li><p>El modelo tiene una estructura fija, es decir un número fijo de parámetros</p></li>
-<li><p>Son, en general, más simples de ajustar e interpretar</p></li>
+</ul>
+</li>
+<li><p>Pros: En general, son más simples de ajustar (requieren menos datos, son más rapidos para entrenar), y más simples de interpretar</p></li>
+<li><p>Cons: En general, son menos flexibles y no tan adecuados para problemas complejos</p></li>
+<li><p>Ejemplo: Modelo gaussiano único, modelo de mezcla de Gaussianas, regresión lineal</p></li>
 </ul>
 <p><strong>Modelos no-paramétricos:</strong></p>
 <ul class="simple">
+<li><p>Características claves:</p>
+<ul>
 <li><p>No hacen supuestos basados en distribuciones específicas (pero si en propiedades de dicha distribución)</p></li>
 <li><p>El número de parámetros puede depender de la cantidad de datos de entrenamiento (o ser infinito)</p></li>
-<li><p>Son, en general, más flexibles pero también más difíciles de ajustar y interpretar</p></li>
+</ul>
+</li>
+<li><p>Pros: En general, son más flexibles y más adecuados para problemas complejos</p></li>
+<li><p>Cons: En general, son más difíciles de ajustar (requieren más datos, más lentos para entrenar), más difíciles de interpretar, y tienen más riesgo de sobreajuste</p></li>
+<li><p>Ejemplo: Histograma, árbol de decisión, k vecinos más próximos</p></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Advertencia</p>
