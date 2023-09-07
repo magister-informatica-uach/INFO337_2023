@@ -411,14 +411,8 @@ Entonces se cumple:</p>
   = \frac{1}{n^2} \sum_{i=1}^n Var(X_i)
   = \frac{1}{n^2} \sum_{i=1}^n \sigma^2 = \frac{\sigma^2}{n}\]</div>
 </div>
+<p>Por qué <span class="math notranslate nohighlight">\(Var \left(\frac{1}{n}\sum_{i=1}^n \limits X_i\right) = \frac{1}{n^2} \sum_{i=1}^n \limits Var(X_i)\)</span>?</p>
 <p>Por qué <span class="math notranslate nohighlight">\(Var(\sum_{i=1}^n \limits X_i) = \sum_{i=1}^n \limits Var(X_i)\)</span>?</p>
-<div class="toggle docutils container">
-<p>Usamos estas propiedades para v.a. <span class="math notranslate nohighlight">\(X_i, X_j\)</span>:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(Var(X_i+X_j) = Var(X_i) + Var(X_j) + 2Cov(X_i,X_j)\)</span></p></li>
-<li><p>Si <span class="math notranslate nohighlight">\(X_i\)</span> y <span class="math notranslate nohighlight">\(X_j\)</span> son dos v.a. independientes, entonces <span class="math notranslate nohighlight">\(Var(X_i+X_j) = Var(X_i) + Var(X_j)\)</span></p></li>
-</ul>
-</div>
 </section>
 <section id="varianza-muestral">
 <h2><span class="section-number">5.3. </span>Varianza muestral<a class="headerlink" href="#varianza-muestral" title="Permalink to this heading">#</a></h2>
@@ -449,8 +443,8 @@ Entonces se cumple:</p>
 <div class="math notranslate nohighlight">
 \[E[S^2]=\frac{1}{n-1}\left(n\sigma^2+n\mu^2 - n\frac{\sigma^2}{n} - n\mu^2\right)
       = \frac{n-1}{n-1}\sigma^2 = \sigma^2\]</div>
-</div>
 <p>De esta manera <span class="math notranslate nohighlight">\(S^2\)</span> es un <em>estimador insesgado</em> de <span class="math notranslate nohighlight">\(\sigma^2\)</span>. (Veamos el insesgadez de estimadores en el futuro.)</p>
+</div>
 </section>
 </section>
 
