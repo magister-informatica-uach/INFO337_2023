@@ -1134,7 +1134,7 @@ x_i  \sim \mathcal{N}(\mu,\sigma^2)
 \log \mathcal{L} (\mu, \sigma^2) =  - \frac{N}{2} \log 2\pi\sigma^2 - \frac{1}{2\sigma^{2}}   \sum_{i=1}^N (x_i-\mu)^2 
 \]</div>
 <div class="toggle docutils container">
-<p>El MLE de la varianza puede obtenerse utilizando el mismo procedimiento.</p>
+<p>El MLE de la varianza puede obtenerse utilizando el mismo procedimiento. En el proceso abajo, podemos crear una nueva variable <span class="math notranslate nohighlight">\(\beta=\sigma^2\)</span> para calcular la derivada, y al final reemplazamos <span class="math notranslate nohighlight">\(\beta\)</span> por <span class="math notranslate nohighlight">\(\sigma^2\)</span>. Podría ser más fácil llegar al término <span class="math notranslate nohighlight">\(\sigma^{4}\)</span> de esta manera.</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{d  \log \mathcal{L} (\mu, \sigma^2)}{d\sigma^2} =  - \frac{N}{2} \frac{1}{\sigma^2} + \frac{1}{2\sigma^{4}}\sum_{i=1}^N (x_i-\mu)^2 =0
@@ -1406,7 +1406,7 @@ Var(\hat \mu) = Var(\frac{1}{N}\sum_{i=1}^N \limits x_i) &amp;= \frac{1}{N^2} ( 
 \end{split}
 \end{split}\]</div>
 <p>Se puede ver que en este caso, la varianza del estimador MLE <span class="math notranslate nohighlight">\(\hat \mu\)</span> alcanza la cota inferior de Crámer-Rao (o la varianza mínima) de los estimadores insesgados en cualquier tamaño de muestra dado. Es decir, el estimador MLE <span class="math notranslate nohighlight">\(\hat \mu\)</span> para una distribución Gaussiana es eficiente. Podemos obtener la varianza de <span class="math notranslate nohighlight">\(\hat \mu\)</span> a través de dos maneras muestradas arriba.</p>
-<p>(2) En segundo paso, calculamos la raíz cuadrada de la varianze del estimador, que es el <a class="reference external" href="https://es.wikipedia.org/wiki/Error_est%C3%A1ndar">error estándar</a>, la desviación estándar de la distribución muestral de un estadístico muestral o estimador en nuestro contexto.</p>
+<p>(2) En segundo paso, calculamos la raíz cuadrada de la varianze del estimador, que es el <a class="reference external" href="https://es.wikipedia.org/wiki/Error_est%C3%A1ndar">error estándar</a>, la <strong>desviación estándar de la distribución muestral</strong> de un estadístico muestral o estimador en nuestro contexto.</p>
 <p>Cuando el estimador (<span class="math notranslate nohighlight">\(\hat \mu\)</span>) es de la media, este error estándar (que es la desviación estándar de la media muestral) también se llama el <a class="reference external" href="https://es.wikipedia.org/wiki/Error_est%C3%A1ndar#Error_est%C3%A1ndar_de_la_media">error estándar de la media</a> <span class="math notranslate nohighlight">\(se(\hat \mu)\)</span>. Lo usamos para cuantificar la incertidumbre de <span class="math notranslate nohighlight">\(\hat \mu\)</span> (en el futuro, lo usaremos para estimar el intervalo de confianza).</p>
 <p>En general, supongamos que una muestra de N observaciones i.i.d. se toma de una distribución (Gaussiana o no) con una desviación estándar <span class="math notranslate nohighlight">\(\sigma\)</span> o varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span>, la media muestral <span class="math notranslate nohighlight">\(\hat \mu\)</span> tendrá un error estándar de la media dado por:</p>
 <div class="math notranslate nohighlight">
