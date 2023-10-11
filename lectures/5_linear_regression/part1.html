@@ -2383,9 +2383,8 @@ g: X \to Y,
 \]</div>
 <p>que mapea una variable a un conjunto de variables:</p>
 <ul class="simple">
+<li><p>La/s variable/s de entrada <span class="math notranslate nohighlight">\(X\)</span> se llama/n <strong>variable/s independiente/s</strong>. También se suelen llamar características (features), regresores, predictores.</p></li>
 <li><p>La variable de salida <span class="math notranslate nohighlight">\(Y\)</span> se llama <strong>variable dependiente</strong>, también se suele llamar respuesta u objetivo.</p></li>
-<li><p>La/s variable/s de entrada <span class="math notranslate nohighlight">\(X\)</span> se llama/n <strong>variable/s independiente/s</strong>. También se suelen llamar características (features).</p></li>
-<li><p>El mapeo o función <span class="math notranslate nohighlight">\(g\)</span> se llama <strong>predictor</strong> o <strong>regresor</strong>.</p></li>
 </ul>
 <p>El objetivo es aprender <span class="math notranslate nohighlight">\(g\)</span> tal que podamos predecir <span class="math notranslate nohighlight">\(Y\)</span> dado <span class="math notranslate nohighlight">\(X\)</span>, es decir <span class="math notranslate nohighlight">\(\mathbb{E}[Y|X]\)</span></p>
 <div class="admonition note">
@@ -2399,8 +2398,8 @@ g: X \to Y,
 </div>
 <p>Definamos en detalle un modelo paramétrico de regresión. Sea</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(X\)</span> una variable continua D-dimensional</p></li>
-<li><p><span class="math notranslate nohighlight">\(Y\)</span> una variable continua unidimensional</p></li>
+<li><p><span class="math notranslate nohighlight">\(X\)</span> una variable continua D-dimensional (<span class="math notranslate nohighlight">\(X\)</span> puede ser una variable discreta también)</p></li>
+<li><p><span class="math notranslate nohighlight">\(Y\)</span> una variable <strong>continua</strong> unidimensional</p></li>
 <li><p><span class="math notranslate nohighlight">\(\{x_i, y_i\}\)</span> con <span class="math notranslate nohighlight">\(i=1,\ldots,N\)</span> un conjunto de <span class="math notranslate nohighlight">\(N\)</span> observaciones de <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(g_\theta\)</span> un modelo con vector de parámetros <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
 </ul>
@@ -2409,9 +2408,17 @@ g: X \to Y,
 \[
 y_i \approx g_\theta(x_i),\quad i=1,\ldots, N
 \]</div>
-<p>El modelo paramétrico más simple es cuando la relación entre variables es <a class="reference external" href="https://es.khanacademy.org/science/electrical-engineering/ee-circuit-analysis-topic/ee-dc-circuit-analysis/a/ee-linearity">lineal (aditivo y homogeneo)</a>. En este caso hablamos de <strong>regresión lineal</strong>.</p>
+<p>El modelo paramétrico más simple es cuando la relación entre variables es <strong>lineal (aditivo y homogeneo)</strong>. En este caso hablamos de <strong>regresión lineal</strong>.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
+<p>Una función es <a class="reference external" href="https://es.khanacademy.org/science/electrical-engineering/ee-circuit-analysis-topic/ee-dc-circuit-analysis/a/ee-linearity">lineal</a> si tiene estas propiedades:</p>
+<ul class="simple">
+<li><p>Aditividad: <span class="math notranslate nohighlight">\(f(X_1 + X_2)\)</span> = f(X_1) + f(X_2)$</p></li>
+<li><p>Homogeneidad: <span class="math notranslate nohighlight">\(f(aX) = af(X)\)</span></p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
 <p>La regresión lineal es lineal en <span class="math notranslate nohighlight">\(\theta\)</span> pero no necesariamente en <span class="math notranslate nohighlight">\(X\)</span></p>
 </div>
 <p>Por ejemplo, el siguiente modelo con entrada unidimensional</p>
@@ -2440,8 +2447,8 @@ g_\theta(x_i) = \theta_0 + \theta_1 x_i,
 \]</div>
 <p>que tiene <span class="math notranslate nohighlight">\(M=2\)</span> parámetros. Este modelo corresponde a una linea en <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> y podemos reconocer:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\theta_0\)</span> como la intercepta</p></li>
-<li><p><span class="math notranslate nohighlight">\(\theta_1\)</span> como la pendiente</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_0\)</span> como la intercepta (intercept)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_1\)</span> como la pendiente (slope)</p></li>
 </ul>
 <p>Si consideramos una variable de entrada bi-dimensional <span class="math notranslate nohighlight">\(x_i = (x_{i1}, x_{i2}) \in \mathbb{R}^2, i=1,\ldots,N\)</span> entonces tendríamos</p>
 <div class="math notranslate nohighlight">
@@ -2461,27 +2468,30 @@ g_\theta(x_i) = \theta_0 + \sum_{j=1}^D \theta_j x_{ij},
 <blockquote>
 <div><p>¿Cómo encontramos <span class="math notranslate nohighlight">\(\theta_0\)</span> y <span class="math notranslate nohighlight">\(\theta_1\)</span> tal que <span class="math notranslate nohighlight">\(y_i \approx \theta_0 + \theta_1 x_i, \forall i\)</span>?</p>
 </div></blockquote>
-<p>Empezaremos escribiendo el error o residuo cuadrático como:</p>
+<p>Asumimos un término de error que cumple:</p>
+<div class="math notranslate nohighlight">
+\[y_i = g_\theta(x_i) + e_i = \theta_0 + \theta_1 x_i + e_i, \forall i\]</div>
+<p>Así que el error o residuo para la i-ésima observaicón es:</p>
+<div class="math notranslate nohighlight">
+\[e_i = y_i - g_\theta(x_i) = y_i - \theta_0 - \theta_1 x_i\]</div>
+<p>El error or residuo cuadrático para la i-ésima observaicón es:</p>
 <div class="math notranslate nohighlight">
 \[
 e_i^2 = (y_i - \theta_0 - \theta_1 x_i)^2,
 \]</div>
+<p>La suma de los errores cuadrados para todas observaicones es:</p>
+<div class="math notranslate nohighlight">
+\[
+L = \sum_{i=1}^N e_i^2 = \sum_{i=1}^N (y_i - \theta_0 - \theta_1 x_i)^2,
+\]</div>
 <p>Luego podemos ajustar (entrenar) un modelo en base al siguiente criterio:</p>
 <div class="math notranslate nohighlight">
 \[
-\min_{\theta} L = \sum_{i=1}^N e_i^2 = \sum_{i=1}^N (y_i - \theta_0 - \theta_1 x_i)^2,
+\min_{\theta} L = \min_{\theta} \sum_{i=1}^N (y_i - \theta_0 - \theta_1 x_i)^2,
 \]</div>
-<p>que se conoce como la suma de los errores cuadrados.</p>
-<p>Si derivamos la expresión con respecto a los parámetros obtenemos:</p>
-<div class="math notranslate nohighlight">
-\[
-\hat \theta_0 = \bar y - \hat \theta_1 \bar x,
-\]</div>
-<p>donde <span class="math notranslate nohighlight">\(\bar x = \frac{1}{N} \sum_{i=1}^N x_i\)</span>, <span class="math notranslate nohighlight">\(\bar y = \frac{1}{N} \sum_{i=1}^N y_i\)</span> y</p>
-<div class="math notranslate nohighlight">
-\[
-\hat \theta_1 = \frac{N\sum_i x_i y_i - (\sum_i x_i)(\sum_i y_i)}{N \sum_i x_i^2 - (\sum_i x_i)^2},
-\]</div>
+<blockquote>
+<div><p>Cómo obtiene los valores de <span class="math notranslate nohighlight">\(\theta_0\)</span> y <span class="math notranslate nohighlight">\(\theta_1\)</span>?</p>
+</div></blockquote>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 Demostración<div class="sd-summary-down docutils">
@@ -2489,23 +2499,17 @@ Demostración<div class="sd-summary-down docutils">
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Con</p>
+<p class="sd-card-text">Si derivamos la expresión con respecto a <span class="math notranslate nohighlight">\(\theta_0\)</span> primero, obtenemos:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-\frac{dL}{d\theta_0} &amp;= -2 \sum_{i=1}^N (y_i - \theta_0 - \theta_1 x_i) \nonumber \\
-&amp;= -2 \sum_{i=1}^N y_i +  2 N\theta_0 + 2 \theta_1 \sum_{i=1}^N x_i = 0 \nonumber
-\end{align}
-\end{split}\]</div>
-<p class="sd-card-text">y</p>
+\[
+\hat \theta_0 = \bar y - \hat \theta_1 \bar x,
+\]</div>
+<p class="sd-card-text">donde <span class="math notranslate nohighlight">\(\bar x = \frac{1}{N} \sum_{i=1}^N x_i\)</span>, <span class="math notranslate nohighlight">\(\bar y = \frac{1}{N} \sum_{i=1}^N y_i\)</span> y derivamos la expresión con respecto a <span class="math notranslate nohighlight">\(\theta_1\)</span>, obtenemos:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-\frac{dL}{d\theta_1} &amp;= -2 \sum_{i=1}^N (y_i - \theta_0 - \theta_1 x_i) x_i \nonumber \\
-&amp;= -2 \sum_{i=1}^N y_i x_i +  2 \theta_0 \sum_{i=1}^N x_i + 2 \theta_1 \sum_{i=1}^N x_i^2 = 0 \nonumber
-\end{align}
-\end{split}\]</div>
-<p class="sd-card-text">se tiene un sistema de dos ecuaciones y dos incognitas:</p>
+\[
+\hat \theta_1 = \frac{N\sum_i x_i y_i - (\sum_i x_i)(\sum_i y_i)}{N \sum_i x_i^2 - (\sum_i x_i)^2}
+\]</div>
+<p class="sd-card-text">Podemos resolverlo usando matriz también! Se tiene un sistema de dos ecuaciones y dos incognitas:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{pmatrix} N &amp; \sum_i x_i \\ \sum_i x_i &amp; \sum_i x_i^2\\\end{pmatrix} \begin{pmatrix} \theta_0 \\ \theta_1 \end{pmatrix}  = \begin{pmatrix} \sum_i y_i \\ \sum_i x_i y_i \end{pmatrix} 
