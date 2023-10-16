@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/5_linear_regression/part1';</script>
     <link rel="index" title="Índice" href="../../genindex.html" />
     <link rel="search" title="Búsqueda" href="../../search.html" />
-    <link rel="next" title="16. Regresión Lineal Multivariada" href="part2.html" />
+    <link rel="next" title="16. Regresión Lineal Múltiple" href="part2.html" />
     <link rel="prev" title="14. Análisis de Asociación de Variables Aleatorias" href="../6_ANOVA/anova_y_asociacionDiscretas.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -178,7 +178,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Regresión Lineal</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Introducción a la Regresión Lineal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="part2.html">16. Regresión Lineal Multivariada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="part2.html">16. Regresión Lineal Múltiple</a></li>
 <li class="toctree-l1"><a class="reference internal" href="part3.html">17. Regresión lineal con funciones base y Regularización</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../7_RegresionesRespDiscreta/Regresiones_RespuestaDiscreta.html">18. Regresiones para Respuestas Discretas</a></li>
 </ul>
@@ -2383,8 +2383,8 @@ g: X \to Y,
 \]</div>
 <p>que mapea una variable a un conjunto de variables:</p>
 <ul class="simple">
-<li><p>La/s variable/s de entrada <span class="math notranslate nohighlight">\(X\)</span> se llama/n <strong>variable/s independiente/s</strong>. También se suelen llamar características (features), regresores, predictores.</p></li>
-<li><p>La variable de salida <span class="math notranslate nohighlight">\(Y\)</span> se llama <strong>variable dependiente</strong>, también se suele llamar respuesta u objetivo.</p></li>
+<li><p>La/s variable/s de entrada <span class="math notranslate nohighlight">\(X\)</span> se llama/n <strong>variable/s independiente/s</strong>. También se suelen llamar <strong>características (features), regresores, predictores</strong>.</p></li>
+<li><p>La variable de salida <span class="math notranslate nohighlight">\(Y\)</span> se llama <strong>variable dependiente</strong>, también se suele llamar <strong>respuesta</strong>.</p></li>
 </ul>
 <p>El objetivo es aprender <span class="math notranslate nohighlight">\(g\)</span> tal que podamos predecir <span class="math notranslate nohighlight">\(Y\)</span> dado <span class="math notranslate nohighlight">\(X\)</span>, es decir <span class="math notranslate nohighlight">\(\mathbb{E}[Y|X]\)</span></p>
 <div class="admonition note">
@@ -2401,96 +2401,97 @@ g: X \to Y,
 <li><p><span class="math notranslate nohighlight">\(X\)</span> una variable continua D-dimensional (<span class="math notranslate nohighlight">\(X\)</span> puede ser una variable discreta también)</p></li>
 <li><p><span class="math notranslate nohighlight">\(Y\)</span> una variable <strong>continua</strong> unidimensional</p></li>
 <li><p><span class="math notranslate nohighlight">\(\{x_i, y_i\}\)</span> con <span class="math notranslate nohighlight">\(i=1,\ldots,N\)</span> un conjunto de <span class="math notranslate nohighlight">\(N\)</span> observaciones de <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(g_\theta\)</span> un modelo con vector de parámetros <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(g_b\)</span> un modelo con vector de parámetros <span class="math notranslate nohighlight">\(b\)</span></p></li>
 </ul>
-<p>El problema de regresión paramétrica consiste en contrar el mejor valor de <span class="math notranslate nohighlight">\(\theta\)</span> tal que</p>
+<p>El problema de regresión paramétrica consiste en contrar el mejor valor de <span class="math notranslate nohighlight">\(b\)</span> tal que</p>
 <div class="math notranslate nohighlight">
 \[
-y_i \approx g_\theta(x_i),\quad i=1,\ldots, N
+y_i \approx g_b(x_i),\quad i=1,\ldots, N
 \]</div>
 <p>El modelo paramétrico más simple es cuando la relación entre variables es <strong>lineal (aditivo y homogeneo)</strong>. En este caso hablamos de <strong>regresión lineal</strong>.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>Una función es <a class="reference external" href="https://es.khanacademy.org/science/electrical-engineering/ee-circuit-analysis-topic/ee-dc-circuit-analysis/a/ee-linearity">lineal</a> si tiene estas propiedades:</p>
 <ul class="simple">
-<li><p>Aditividad: <span class="math notranslate nohighlight">\(f(X_1 + X_2)\)</span> = f(X_1) + f(X_2)$</p></li>
+<li><p>Aditividad: <span class="math notranslate nohighlight">\(f(X_1 + X_2) = f(X_1) + f(X_2)\)</span></p></li>
 <li><p>Homogeneidad: <span class="math notranslate nohighlight">\(f(aX) = af(X)\)</span></p></li>
 </ul>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Advertencia</p>
-<p>La regresión lineal es lineal en <span class="math notranslate nohighlight">\(\theta\)</span> pero no necesariamente en <span class="math notranslate nohighlight">\(X\)</span></p>
+<p>La regresión lineal es lineal en <span class="math notranslate nohighlight">\(b\)</span> pero no necesariamente en <span class="math notranslate nohighlight">\(X\)</span></p>
 </div>
 <p>Por ejemplo, el siguiente modelo con entrada unidimensional</p>
 <div class="math notranslate nohighlight">
 \[
-g_\theta \left(x_i \right) = \theta_0 + \theta_1 x_i  + \theta_2 x_i^2,
+g_b \left(x_i \right) = b_0 + b_1 x_i  + b_2 x_i^2,
 \]</div>
-<p>es un modelo lineal en <span class="math notranslate nohighlight">\(\theta\)</span> y</p>
+<p>es un modelo lineal en <span class="math notranslate nohighlight">\(b\)</span> y</p>
 <div class="math notranslate nohighlight">
 \[
-g_\theta(x_i) = \theta_0 + \theta_1 \log(x_i),
+g_b(x_i) = b_0 + b_1 \log(x_i),
 \]</div>
-<p>es también lineal en <span class="math notranslate nohighlight">\(\theta\)</span>, sin embargo</p>
+<p>es también lineal en <span class="math notranslate nohighlight">\(b\)</span>, sin embargo</p>
 <div class="math notranslate nohighlight">
 \[
-g_\theta(x_i) = \theta_0 + \log(x_i + \theta_1),
+g_b(x_i) = b_0 + \log(x_i + b_1),
 \]</div>
-<p>no es lineal en <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>no es lineal en <span class="math notranslate nohighlight">\(b\)</span>.</p>
 </section>
 <section id="el-modelo-lineal-mas-simple">
 <h2><span class="section-number">15.2. </span>El modelo lineal más simple<a class="headerlink" href="#el-modelo-lineal-mas-simple" title="Permalink to this heading">#</a></h2>
 <p>Si consideramos una variable unidimensional <span class="math notranslate nohighlight">\(x_i \in \mathbb{R}, i=1,\ldots,N\)</span>, entonces el modelo lineal más simple sería</p>
 <div class="math notranslate nohighlight">
 \[
-g_\theta(x_i) = \theta_0 + \theta_1 x_i,
+g_b(x_i) = b_0 + b_1 x_i,
 \]</div>
 <p>que tiene <span class="math notranslate nohighlight">\(M=2\)</span> parámetros. Este modelo corresponde a una linea en <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> y podemos reconocer:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\theta_0\)</span> como la intercepta (intercept)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\theta_1\)</span> como la pendiente (slope)</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_0\)</span> como la intercepta (intercept)</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_1\)</span> como la pendiente (slope)</p></li>
 </ul>
 <p>Si consideramos una variable de entrada bi-dimensional <span class="math notranslate nohighlight">\(x_i = (x_{i1}, x_{i2}) \in \mathbb{R}^2, i=1,\ldots,N\)</span> entonces tendríamos</p>
 <div class="math notranslate nohighlight">
 \[
-g_\theta(x_i) = \theta_0 + \theta_1 x_{i1} + \theta_2 x_{i2},
+g_b(x_i) = b_0 + b_1 x_{i1} + b_2 x_{i2},
 \]</div>
 <p>que tiene <span class="math notranslate nohighlight">\(M=3\)</span> parámetros. Esto corresponde a un plano en <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>.</p>
 <p>La forma más general asume una variable D-dimensional <span class="math notranslate nohighlight">\(x_i = (x_{i1}, x_{i2}, \ldots, x_{iD}), i=1,\ldots,N\)</span> con</p>
 <div class="math notranslate nohighlight">
 \[
-g_\theta(x_i) = \theta_0 + \sum_{j=1}^D \theta_j x_{ij},
+g_b(x_i) = b_0 + \sum_{j=1}^D b_j x_{ij},
 \]</div>
 <p>que tiene <span class="math notranslate nohighlight">\(M=D+1\)</span> parámetros. Esto corresponde a un hiperplano en <span class="math notranslate nohighlight">\(\mathbb{R}^M\)</span>.</p>
 <section id="ajustando-el-modelo-lineal-simple-matematicamente">
 <h3><span class="section-number">15.2.1. </span>Ajustando el modelo lineal simple: Matemáticamente<a class="headerlink" href="#ajustando-el-modelo-lineal-simple-matematicamente" title="Permalink to this heading">#</a></h3>
 <p>Asumiendo que tenemos <span class="math notranslate nohighlight">\(\{x_i, y_i\}_{i=1,\ldots,N}\)</span> observaciones <em>iid</em> de las variables unidimensionales <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span></p>
 <blockquote>
-<div><p>¿Cómo encontramos <span class="math notranslate nohighlight">\(\theta_0\)</span> y <span class="math notranslate nohighlight">\(\theta_1\)</span> tal que <span class="math notranslate nohighlight">\(y_i \approx \theta_0 + \theta_1 x_i, \forall i\)</span>?</p>
+<div><p>¿Cómo encontramos <span class="math notranslate nohighlight">\(b_0\)</span> y <span class="math notranslate nohighlight">\(b_1\)</span> tal que <span class="math notranslate nohighlight">\(y_i \approx b_0 + b_1 x_i, \forall i\)</span>?</p>
 </div></blockquote>
 <p>Asumimos un término de error que cumple:</p>
 <div class="math notranslate nohighlight">
-\[y_i = g_\theta(x_i) + e_i = \theta_0 + \theta_1 x_i + e_i, \forall i\]</div>
+\[y_i = g_b(x_i) + e_i = b_0 + b_1 x_i + e_i, \forall i\]</div>
+<p>(donde <span class="math notranslate nohighlight">\(e_i \sim \cal N(0, \sigma^2)\)</span>, <span class="math notranslate nohighlight">\(e_i\)</span> es independiente de <span class="math notranslate nohighlight">\(x_i\)</span>, y los <span class="math notranslate nohighlight">\(e_i\)</span> son independientes entre sí mismos.)</p>
 <p>Así que el error o residuo para la i-ésima observaicón es:</p>
 <div class="math notranslate nohighlight">
-\[e_i = y_i - g_\theta(x_i) = y_i - \theta_0 - \theta_1 x_i\]</div>
+\[e_i = y_i - g_b(x_i) = y_i - b_0 - b_1 x_i\]</div>
 <p>El error or residuo cuadrático para la i-ésima observaicón es:</p>
 <div class="math notranslate nohighlight">
 \[
-e_i^2 = (y_i - \theta_0 - \theta_1 x_i)^2,
+e_i^2 = (y_i - b_0 - b_1 x_i)^2,
 \]</div>
 <p>La suma de los errores cuadrados para todas observaicones es:</p>
 <div class="math notranslate nohighlight">
 \[
-L = \sum_{i=1}^N e_i^2 = \sum_{i=1}^N (y_i - \theta_0 - \theta_1 x_i)^2,
+L = \sum_{i=1}^N e_i^2 = \sum_{i=1}^N (y_i - b_0 - b_1 x_i)^2,
 \]</div>
 <p>Luego podemos ajustar (entrenar) un modelo en base al siguiente criterio:</p>
 <div class="math notranslate nohighlight">
 \[
-\min_{\theta} L = \min_{\theta} \sum_{i=1}^N (y_i - \theta_0 - \theta_1 x_i)^2,
+\min_{b} L = \min_{b} \sum_{i=1}^N (y_i - b_0 - b_1 x_i)^2,
 \]</div>
 <blockquote>
-<div><p>Cómo obtiene los valores de <span class="math notranslate nohighlight">\(\theta_0\)</span> y <span class="math notranslate nohighlight">\(\theta_1\)</span>?</p>
+<div><p>Cómo obtiene los valores de <span class="math notranslate nohighlight">\(b_0\)</span> y <span class="math notranslate nohighlight">\(b_1\)</span>?</p>
 </div></blockquote>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
@@ -2499,29 +2500,18 @@ Demostración<div class="sd-summary-down docutils">
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Si derivamos la expresión con respecto a <span class="math notranslate nohighlight">\(\theta_0\)</span> primero, obtenemos:</p>
+<p class="sd-card-text">Si derivamos la expresión <span class="math notranslate nohighlight">\(L\)</span> con respecto a <span class="math notranslate nohighlight">\(b_0\)</span> primero, obtenemos:</p>
 <div class="math notranslate nohighlight">
 \[
-\hat \theta_0 = \bar y - \hat \theta_1 \bar x,
+\hat b_0 = \bar y - \hat b_1 \bar x,
 \]</div>
-<p class="sd-card-text">donde <span class="math notranslate nohighlight">\(\bar x = \frac{1}{N} \sum_{i=1}^N x_i\)</span>, <span class="math notranslate nohighlight">\(\bar y = \frac{1}{N} \sum_{i=1}^N y_i\)</span> y derivamos la expresión con respecto a <span class="math notranslate nohighlight">\(\theta_1\)</span>, obtenemos:</p>
+<p class="sd-card-text">donde <span class="math notranslate nohighlight">\(\bar x = \frac{1}{N} \sum_{i=1}^N x_i\)</span>, <span class="math notranslate nohighlight">\(\bar y = \frac{1}{N} \sum_{i=1}^N y_i\)</span> y derivamos la expresión <span class="math notranslate nohighlight">\(L\)</span> con respecto a <span class="math notranslate nohighlight">\(b_1\)</span>, obtenemos:</p>
 <div class="math notranslate nohighlight">
 \[
-\hat \theta_1 = \frac{N\sum_i x_i y_i - (\sum_i x_i)(\sum_i y_i)}{N \sum_i x_i^2 - (\sum_i x_i)^2}
+\hat b_1 = \frac{N\sum_i x_i y_i - (\sum_i x_i)(\sum_i y_i)}{N \sum_i x_i^2 - (\sum_i x_i)^2} = \displaystyle \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} = \frac{\sum_i (x_i-\bar{x})(y_i-\bar{y})}{\sum_i (x_i-\bar{x})^2}= \frac{\frac{1}{n-1}{\sum_i (x_i-\bar{x})(y_i-\bar{y})}}{\frac{1}{n-1}{\sum_i (x_i-\bar{x})^2}} = \frac{s_{xy}}{s_x^2}
 \]</div>
-<p class="sd-card-text">Podemos resolverlo usando matriz también! Se tiene un sistema de dos ecuaciones y dos incognitas:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{pmatrix} N &amp; \sum_i x_i \\ \sum_i x_i &amp; \sum_i x_i^2\\\end{pmatrix} \begin{pmatrix} \theta_0 \\ \theta_1 \end{pmatrix}  = \begin{pmatrix} \sum_i y_i \\ \sum_i x_i y_i \end{pmatrix} 
-\end{split}\]</div>
-<p class="sd-card-text">cuya solución es:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{pmatrix} \hat \theta_0 \\ \hat \theta_1 \end{pmatrix}  = 
-\frac{1}{N\sum_i x_i^2 - \left(\sum_i x_i\right)^2}\begin{pmatrix} \sum_i x_i^2 &amp; -\sum_i x_i \\ -\sum_i x_i &amp; N\\\end{pmatrix}  
-\begin{pmatrix} \sum_i y_i \\ \sum_i x_i y_i \end{pmatrix} 
-\end{split}\]</div>
-<p class="sd-card-text">donde asumimos que el determinante de la matriz no es cero.</p>
+<p class="sd-card-text">donde <span class="math notranslate nohighlight">\(s_{xy}\)</span> es la covarianza muestral insesgada (unbiased sample covariance) de <span class="math notranslate nohighlight">\(x\)</span> y <span class="math notranslate nohighlight">\(y\)</span>, y <span class="math notranslate nohighlight">\(s_x^2\)</span> es la varianza muestral insesgada de x.</p>
+<p class="sd-card-text">Puedes resolver las derivaciones arriba?</p>
 </div>
 </details></section>
 <section id="ajustando-el-modelo-lineal-simple-python">
@@ -2534,10 +2524,10 @@ Demostración<div class="sd-summary-down docutils">
 </div>
 <p>Esta función retorna un objeto cuyos atributos son:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">slope</span></code>: Equivalente a <span class="math notranslate nohighlight">\(\hat \theta_1\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">intercept</span></code>: Equivalente a <span class="math notranslate nohighlight">\(\hat \theta_0\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slope</span></code>: Equivalente a <span class="math notranslate nohighlight">\(\hat b_1\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intercept</span></code>: Equivalente a <span class="math notranslate nohighlight">\(\hat b_0\)</span></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rvalue</span></code>: El coeficiente de correlación de Pearson</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pvalue</span></code>: Un p-value para la hipótesis nula de que <span class="math notranslate nohighlight">\(\theta_1 =0\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pvalue</span></code>: Un p-value para la hipótesis nula de que <span class="math notranslate nohighlight">\(b_1 =0\)</span></p></li>
 </ul>
 <p>Más adelante ahondaremos en el coeficiente de correlación y los test de hipótesis para la regresión lineal. De momento pongamos en práctica la función anterior utilizando datos sintéticos:</p>
 <div class="cell docutils container">
@@ -2694,7 +2684,7 @@ Demostración<div class="sd-summary-down docutils">
 <p>En general buscamos residuos que:</p>
 <ul class="simple">
 <li><p>Estén concentrados en torno a cero</p></li>
-<li><p>No estén correlacionados, es decir que se vean como ruido blanco</p></li>
+<li><p>No estén correlacionados</p></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Advertencia</p>
@@ -2703,20 +2693,22 @@ Demostración<div class="sd-summary-down docutils">
 </section>
 <section id="coeficiente-de-determinacion">
 <h3><span class="section-number">15.2.3. </span>Coeficiente de determinación<a class="headerlink" href="#coeficiente-de-determinacion" title="Permalink to this heading">#</a></h3>
-<p>Podemos medir la fuerza de la relación lineal entre las variables utilizando el <strong>coeficiente de determinación</strong> o  <span class="math notranslate nohighlight">\(r^2\)</span> definido como</p>
+<p>Podemos medir la fuerza de la relación lineal entre las variables utilizando el <strong>coeficiente de determinación</strong> o <span class="math notranslate nohighlight">\(R^2\)</span> (o <span class="math notranslate nohighlight">\(r^2\)</span>) definido como</p>
 <div class="math notranslate nohighlight">
 \[
-r^2 = 1 - \frac{\sum_i (y_i - \hat y_i)^2}{\sum_i (y_i - \bar y_i)^2} \in [0, 1],
+R^2 = 1 - \frac{\sum_i (y_i - \hat y_i)^2}{\sum_i (y_i - \bar y_i)^2} = \frac{\sum_i (\hat y_i^2 - \bar y_i)^2}{\sum_i (y_i - \bar y_i)^2} \in [0, 1],
 \]</div>
-<p>es decir uno menos la suma de los residuos dividido por la varianza de <span class="math notranslate nohighlight">\(y\)</span>. Para la regresión lineal simple el estadístico <span class="math notranslate nohighlight">\(r\)</span> es equivalente al <a class="reference external" href="https://es.wikipedia.org/wiki/Coeficiente_de_correlaci%C3%B3n_de_Pearson">coeficiente de correlación de Pearson</a>.</p>
+<p>es decir uno menos la suma de los residuos dividido por la varianza de <span class="math notranslate nohighlight">\(y\)</span>. Para la regresión lineal simple el estadístico <span class="math notranslate nohighlight">\(r\)</span> es equivalente al <a class="reference external" href="https://es.wikipedia.org/wiki/Coeficiente_de_correlaci%C3%B3n_de_Pearson">coeficiente de correlación de Pearson</a> en la muestra (sample correlation) entre <span class="math notranslate nohighlight">\(x\)</span> y <span class="math notranslate nohighlight">\(y\)</span>. (Si te interesa saber por qué, tratas de hacer la demostración!)</p>
 <p>Interpretación de <span class="math notranslate nohighlight">\(r^2\)</span>:</p>
 <ul class="simple">
-<li><p>Si <span class="math notranslate nohighlight">\(r^2 = 1\)</span>, los datos son predichos perfectamente por el modelo. El regresor explica toda la variación en <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
-<li><p>Si <span class="math notranslate nohighlight">\(r^2 = 0\)</span>, el modelo ajustado es una linea horizontal. El regresor no explica la variación en <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(R^2 = 1\)</span>, los datos son predichos perfectamente por el modelo. El regresor explica toda la variación en <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(R^2 = 0\)</span>, el modelo ajustado es una linea horizontal. El regresor no explica la variación en <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Advertencia</p>
-<p>Si las variables tienen una relación fuerte, pero de naturaleza no-lineal, esta podría no ser detectada por <span class="math notranslate nohighlight">\(r^2\)</span>.</p>
+<ul class="simple">
+<li><p>Si las variables tienen una relación fuerte, pero de naturaleza no-lineal, esta podría no ser detectada por <span class="math notranslate nohighlight">\(R^2\)</span>.</p></li>
+</ul>
 </div>
 </section>
 </section>
@@ -2767,7 +2759,7 @@ r^2 = 1 - \frac{\sum_i (y_i - \hat y_i)^2}{\sum_i (y_i - \bar y_i)^2} \in [0, 1]
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title"><span class="section-number">16. </span>Regresión Lineal Multivariada</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Regresión Lineal Múltiple</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
