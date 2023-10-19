@@ -364,13 +364,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-pipeline-basico-de-modelamiento-con-regresion-python">16.4. Un pipeline básico de modelamiento con regresión (Python)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pregunta-de-investigacion">16.4.1. Pregunta de investigación</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspeccion-preprocesamiento-y-analisis-exploratorio-de-datos">16.4.2. Inspección, preprocesamiento y análisis exploratorio de datos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajusta-el-modelo">16.4.3. Ajusta el modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajusta-entrena-el-modelo">16.4.3. Ajusta/entrena el modelo</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-los-residuos-diagnostico-residual">16.4.4. Examina los residuos (diagnóstico residual)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-vif">16.4.5. Examina VIF</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-model-fitness">16.4.6. Examina model fitness</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-coeficientes">16.4.7. Examina coeficientes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refinamiento-y-o-selecion-del-modelos">16.4.8. Refinamiento y/o seleción del modelos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">16.4.9. Conclusión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refinamiento-y-selecion-del-modelos">16.4.8. Refinamiento y seleción del modelos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-conclusion">16.4.9. Resumen &amp; conclusión</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-finales">16.5. Notas finales</a></li>
@@ -405,7 +405,8 @@ document.write(`
 <span class="kn">import</span> <span class="nn">scipy.stats</span>
 
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.anova</span> <span class="kn">import</span> <span class="n">anova_lm</span>
 <span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">variance_inflation_factor</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NumPy versión: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -2721,10 +2722,10 @@ Demostración<div class="sd-summary-down docutils">
 <li><p>No todos valores atípicos o puntos con alto apalancamiento son influyentes. Para identificar datos influyentes, puedes consultar este <a class="reference external" href="https://online.stat.psu.edu/stat501/lesson/11">material</a>.</p></li>
 <li><p>Si exiten puntos influyentes, hay varias opciones:</p>
 <ul>
-<li><p>Analizar los datos dos veces, una vez con estos punto y una vez sin ellos, e informe de los resultados de ambos análisis.</p></li>
-<li><p>Solo puedes eliminar estos puntos si tienes una razón buena y objetiva. Si eliminas cualquier dato, justifique y describa en sus informes.</p></li>
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Winsorizing#:~:text=Winsorizing%20or%20winsorization%20is%20the,as%20clipping%20in%20signal%20processing.">Winsorizing</a> las variables y describa en sus informes</p></li>
-<li><p>Intentar utilizar <a class="reference external" href="https://online.stat.psu.edu/stat501/lesson/topic-1-robust-regression">Robust Regression</a>.</p></li>
+<li><p>Elimina estos puntos, pero solo si tienes una razón buena y objetiva. Si eliminas cualquier dato, justifique y describa en sus informes.</p></li>
+<li><p>Si no estas seguro, analiza los datos dos veces, una vez con estos punto y una vez sin ellos, e informe de los resultados de ambos análisis.</p></li>
+<li><p>Utiliza <a class="reference external" href="https://online.stat.psu.edu/stat501/lesson/topic-1-robust-regression">Robust Regression</a>.</p></li>
 </ul>
 </li>
 </ul>
@@ -2732,7 +2733,7 @@ Demostración<div class="sd-summary-down docutils">
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Advertencia</p>
-<p>No elimina puntos de datos solo porque no se ajustan a su modelo de regresión preconcebido.</p>
+<p>No elimine puntos de datos solo porque no se ajustan a su modelo de regresión preconcebido.</p>
 </div>
 <p>Veamos cómo examinar estos supuestos en un ejemplo.</p>
 </section>
@@ -3139,14 +3140,18 @@ Temperature #unique: 23
 <div><p>Según la matriz de correlación, no detectamos un problema de multicolinealidad (aunque todavía es posible), y pudimos seguir adelante con los tres predictores.</p>
 </div></blockquote>
 </section>
-<section id="ajusta-el-modelo">
-<h3><span class="section-number">16.4.3. </span>Ajusta el modelo<a class="headerlink" href="#ajusta-el-modelo" title="Permalink to this heading">#</a></h3>
+<section id="ajusta-entrena-el-modelo">
+<h3><span class="section-number">16.4.3. </span>Ajusta/entrena el modelo<a class="headerlink" href="#ajusta-entrena-el-modelo" title="Permalink to this heading">#</a></h3>
 <p>El problema a modelar es el siguiente:</p>
 <div class="math notranslate nohighlight">
 \[
-\text{consumption} = b_0 + b_1 \cdot \text{income} + b_2 \cdot \text{price} + b_3 \cdot \text{temperature}
+\text{Consumption} = b_0 + b_1 \cdot \text{Income} + b_2 \cdot \text{Price} + b_3 \cdot \text{Temperature}
 \]</div>
-<p>Para ajustar este modelo de regresión lineal utilizaremos la clase <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.regression.linear_model.OLS.html"><code class="docutils literal notranslate"><span class="pre">OLS</span></code></a> del la librería <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>.</p>
+<p>Para ajustar este modelo de regresión lineal utilizaremos la librería <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>. En particular, utilizaremos <code class="docutils literal notranslate"><span class="pre">statsmodels.api</span></code> y la clase <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.regression.linear_model.OLS.html"><code class="docutils literal notranslate"><span class="pre">OLS</span></code></a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>Puedes usar <a class="reference external" href="https://www.statsmodels.org/stable/example_formulas.html"><code class="docutils literal notranslate"><span class="pre">statsmodels.formula.api</span></code></a> que te permite escrbir la fórmula como “Consumption~Income+Price+Temperature” directamente o R (que usa fórmula también) en lugar de <code class="docutils literal notranslate"><span class="pre">statsmodels.api</span></code> en tu tarea o proyecto.</p>
+</div>
 <p>Primero creamos el objeto <code class="docutils literal notranslate"><span class="pre">OLS</span></code> entregándole las variables dependiente e independientes.
 - Las variables pueden entregars como DataFrames de <code class="docutils literal notranslate"><span class="pre">pandas</span></code> o arreglos de <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. La primera opción es más conveniente pues los resultados entregados por <code class="docutils literal notranslate"><span class="pre">OLS</span></code> seguiran los nombres y etiquetas del DataFrame.</p>
 <p>El objeto creado tiene un método llamado <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.regression.linear_model.OLS.fit.html#statsmodels.regression.linear_model.OLS.fit"><code class="docutils literal notranslate"><span class="pre">fit</span></code></a> que aplica mínimos cuadrados ordinarios (máxima verosimilitud bajo ciertos supuestos) para obtener los parámetros del regresor lineal:</p>
@@ -3220,7 +3225,7 @@ Temperature #unique: 23
 })(window);</script></div>
 </div>
 <p><strong>Histograma, Q-Q plot, y Shapiro-Wilk test</strong></p>
-<p>Aquí solo hacemos el Shapiro-Wilk test. Tienes que hacer histograma, Q-Q plot (debes estandarizar los residuos para esto) y Shapiro-Wilk test e interpretarlos en tu tarea.</p>
+<p>Aquí solo hacemos el Shapiro-Wilk test. <strong>Tienes que hacer histograma, Q-Q plot (debes estandarizar los residuos primero) y Shapiro-Wilk test e interpretarlos en tu tarea</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">resid</span><span class="p">))</span>
@@ -3280,7 +3285,7 @@ Temperature #unique: 23
 })(window);</script></div>
 </div>
 <blockquote>
-<div><p>Parece que los supuestos de residuos se cumplen.</p>
+<div><p>Los supuestos de residuos se cumplen.</p>
 </div></blockquote>
 </section>
 <section id="examina-vif">
@@ -3341,7 +3346,9 @@ Temperature #unique: 23
 </table>
 </div></div></div>
 </div>
-<p>VIFs &lt; 5, no tenemos el problema de multicolinealidad.</p>
+<blockquote>
+<div><p>VIFs &lt; 5, no tenemos el problema de multicolinealidad.</p>
+</div></blockquote>
 <div class="admonition important">
 <p class="admonition-title">Importante</p>
 <p>Sólo podemos confiar en los tests o usar el modelo (los coeficientes) para responder a nuestras preguntas de investigación (en los pasos siguientes) si los supuestos eran correctos.</p>
@@ -3390,7 +3397,7 @@ Temperature #unique: 23
 <p>Formalmente, tenemos que utilizar las métricas de fitness, y los tests de hipótesis. Podemos verlos en el atributo <code class="docutils literal notranslate"><span class="pre">summary</span></code> de la estructura retornada por el método <code class="docutils literal notranslate"><span class="pre">fit</span></code> de OLS:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3410,7 +3417,7 @@ Temperature #unique: 23
   <th>Date:</th>             <td>Thu, 19 Oct 2023</td> <th>  Prob (F-statistic):</th> <td>2.45e-07</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>00:44:12</td>     <th>  Log-Likelihood:    </th> <td>  58.619</td>
+  <th>Time:</th>                 <td>12:04:41</td>     <th>  Log-Likelihood:    </th> <td>  58.619</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>    30</td>      <th>  AIC:               </th> <td>  -109.2</td>
@@ -3463,22 +3470,21 @@ Temperature #unique: 23
 </section>
 <section id="examina-coeficientes">
 <h3><span class="section-number">16.4.7. </span>Examina coeficientes<a class="headerlink" href="#examina-coeficientes" title="Permalink to this heading">#</a></h3>
-<p>Ahora podemos examinar los coeficientes.</p>
-<p>¿Qué tan significativa es la contribución de cada predictor a la predicción controlando otros predictores?</p>
+<p>Ahora podemos examinar los coeficientes. ¿Qué tan significativa es la contribución de cada predictor a la predicción controlando otros predictores?</p>
 <blockquote>
 <div><p>En base a los p-values de t-tests de los coeficientes, se rechanza la hipótesis de que el parámetro asociado a temperatura e ingreso son zeros (nulos). No hay suficiente evidencia para rechazar en el caso del precio y la constante.</p>
 </div></blockquote>
-<p><strong>Puedes responder a las preguntas P1 y P2?</strong></p>
+<p><strong>Puedes responder a las preguntas P1 y P2 (como la primera ronda)?</strong></p>
 </section>
-<section id="refinamiento-y-o-selecion-del-modelos">
-<h3><span class="section-number">16.4.8. </span>Refinamiento y/o seleción del modelos<a class="headerlink" href="#refinamiento-y-o-selecion-del-modelos" title="Permalink to this heading">#</a></h3>
+<section id="refinamiento-y-selecion-del-modelos">
+<h3><span class="section-number">16.4.8. </span>Refinamiento y seleción del modelos<a class="headerlink" href="#refinamiento-y-selecion-del-modelos" title="Permalink to this heading">#</a></h3>
 <p>Usando los p-values de t-tests arriba, podemos eliminar “price”:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X3</span> <span class="o">=</span> <span class="n">df_st</span><span class="p">[[</span><span class="s2">&quot;Income&quot;</span><span class="p">,</span> <span class="s2">&quot;Temperature&quot;</span><span class="p">]]</span>
 <span class="n">X3</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X3</span><span class="p">)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">X3</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3542,8 +3548,11 @@ Temperature #unique: 23
 </tr>
 </table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
 </div>
-<p>Se puede examinar los residuos de nuevo, aunque en este caso no es necesario porque hemos elinimado un predictor insignificativo, y no debería haber afectado al diagnóstico residual.</p>
+<p><strong>Observaciones</strong>: <span class="math notranslate nohighlight">\(R^2\)</span>, <span class="math notranslate nohighlight">\(R_{adj}^2\)</span>, <span class="math notranslate nohighlight">\(F\)</span>-statistic cambiaron un poco pero la significancia de F-test no cambió. Los valores de coeficientes permanecieron casi iguales y sus significancias no cambiaron.</p>
+<p><strong>Los residuos (y VIF)</strong>: Se puede examinar los residuos (y VIF) de nuevo, aunque en este caso no es necesario porque hemos elinimado un predictor insignificativo de un modelo que ya cumple los supuestos de residuos y requisito de VIF, y no observamos cambios grandes especialmente con respecto a significancias estadísticas, así que no debería haber afectado al diagnóstico residual (y VIF).</p>
+<p>Pero si tu nuevo modelo trae cambios grandes, tienes que examinar los residuos (y VIF) de nuevo. La examinación de VIF se pone entre paréntesis porque depende de tu pregunta de investigación.</p>
 <p><strong>Cómo selecionar el mejor modelo?</strong></p>
+<p><strong><span class="math notranslate nohighlight">\(R^2\)</span> adjustado (<span class="math notranslate nohighlight">\(R^2_{adj}\)</span>)</strong></p>
 <p>Los <span class="math notranslate nohighlight">\(R^2\)</span> (“R-squared”) no son muy confiables en seleción de modelos, porque cada vez que agregas una variable, el <span class="math notranslate nohighlight">\(R^2\)</span> aumenta o queda igual! Además, algunas de las variables independientes (predictores) pueden volverse significativas.</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle R^2 = 1 - \frac{\sum\limits_{i=1}^N (y_i - \hat y_i)^2}{\sum\limits_{i=1}^N (y_i - \bar y_i)^2} = \frac{\sum\limits_{i=1}^N (\hat y_i^2 - \bar y_i)^2}{\sum\limits_{i=1}^N (y_i - \bar y_i)^2}\]</div>
@@ -3554,19 +3563,103 @@ Temperature #unique: 23
 <p class="admonition-title">Advertencia</p>
 <p>A diferencia del <span class="math notranslate nohighlight">\(R^2\)</span>, el <span class="math notranslate nohighlight">\(R^2\)</span> ajustado no está acotado entre 0 y 1 y no debe interpretarse de manera similar a la medida del <span class="math notranslate nohighlight">\(R^2\)</span> (no refleja qué porcentaje de error se está explicando).</p>
 </div>
+<p>El modelo completo tiene el mejor <span class="math notranslate nohighlight">\(R_{adj}^2\)</span> (.687) que el modelo reducido aquí (.680). Si tenemos que selecionar un modelo y usamos <span class="math notranslate nohighlight">\(R_{adj}^2\)</span> para elegir (y preferimos un modelo más grande), podemos selecionar el modelo completo.</p>
+<p><strong>F-test lineal general</strong></p>
+<p>Sin embargo, muchas investigadores preferen un modelo más pequeño, dado que no hay diferencia estadística entre los models. En este caso, hacemos un <a class="reference external" href="https://online.stat.psu.edu/stat501/lesson/6/6.2">F-test lineal general</a>.</p>
+<p>El <span class="math notranslate nohighlight">\(H_0\)</span> corresponde a la afirmación de que no hay diferencias entre el modelo reducido y el modelo completo. Si rechazamos <span class="math notranslate nohighlight">\(H_0\)</span> (con <span class="math notranslate nohighlight">\(p\)</span>&lt;.05), rechazamos el modelo reducido en favor de el modelo completo (o más grande).</p>
+<p>Aquí, también te muestramos cómo usar <a class="reference external" href="https://www.statsmodels.org/stable/example_formulas.html"><code class="docutils literal notranslate"><span class="pre">statsmodels.formula.api</span></code></a> para entrenar (ajustar) los modelos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_new</span> <span class="o">=</span> <span class="n">df_st</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_new</span><span class="p">[</span><span class="s2">&quot;Consumption&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Consumption&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;Consumption~Income+Temperature&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_new</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;Consumption~Income+Price+Temperature&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_new</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">anovaResults</span> <span class="o">=</span> <span class="n">anova_lm</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">anovaResults</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>df_resid</th>
+      <th>ssr</th>
+      <th>df_diff</th>
+      <th>ss_diff</th>
+      <th>F</th>
+      <th>Pr(&gt;F)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>27.0</td>
+      <td>0.037399</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>26.0</td>
+      <td>0.035273</td>
+      <td>1.0</td>
+      <td>0.002126</td>
+      <td>1.5669</td>
+      <td>0.221803</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 <blockquote>
-<div><p>El modelo completo original tiene el mejor <span class="math notranslate nohighlight">\(R^2\)</span> adjustado. Podemos selecionarlo.</p>
+<div><p>Aquí, p=.22&gt;.05, no hay diferencia significativa entre los modelos. Eligimos el modelo reducido (sin precio).</p>
 </div></blockquote>
-<p>También podemos selectionar el modelo según AIC, BIC, <a class="reference external" href="https://online.stat.psu.edu/stat501/lesson/6/6.2">F-test lineal general</a>, <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html">cross-validation</a>, etc.</p>
+<p>También podemos selectionar el modelo según AIC, BIC, <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html">cross-validation</a>, etc.</p>
+<p>Diferentes investigadores (dependen de las preguntas de investigaciones) pueden tener preferencias diferentes.</p>
 </section>
-<section id="conclusion">
-<h3><span class="section-number">16.4.9. </span>Conclusión<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h3>
-<p>Ahora, revisa las preguntas de nuevo y saca conclusiones.</p>
+<section id="resumen-conclusion">
+<h3><span class="section-number">16.4.9. </span>Resumen &amp; conclusión<a class="headerlink" href="#resumen-conclusion" title="Permalink to this heading">#</a></h3>
+<p><strong>Resumen</strong></p>
+<p>Empezamos con una regresión lineal múlitple que predice el consumo de helados por ingreso, precio y temperature (M1). Esto resultó en un modelo general significativo, <span class="math notranslate nohighlight">\(F\)</span>(3, 26)=22.17, <span class="math notranslate nohighlight">\(p\)</span>&lt;.001, <span class="math notranslate nohighlight">\(R^2\)</span>=.719, <span class="math notranslate nohighlight">\(R_{adj}^2\)</span>=.687. Los residuos y VIF fueron examinados y cumplieron los supuestos y requisitos. Los predictores individuales fueron examinados luego y señalaron que el ingreso (<span class="math notranslate nohighlight">\(t\)</span>=2.82, <span class="math notranslate nohighlight">\(p\)</span>=.009) y temperature (<span class="math notranslate nohighlight">\(t\)</span>=7.76, <span class="math notranslate nohighlight">\(p\)</span>&lt;.001) fueron predictores significativos, pero el precio no fue un predictor significativo (<span class="math notranslate nohighlight">\(t\)</span>=-1.25, <span class="math notranslate nohighlight">\(p\)</span>=.22).</p>
+<p>Construimos otra regresión lineal múlitple que predice el consumo de helados por ingreso y temperature, sin precio (M2). Esto resultó en un modelo general significativo, <span class="math notranslate nohighlight">\(F\)</span>(2, 27)=31.81, <span class="math notranslate nohighlight">\(p\)</span>&lt;.001, <span class="math notranslate nohighlight">\(R^2\)</span>=.702, <span class="math notranslate nohighlight">\(R_{adj}^2\)</span>=.680, <span class="math notranslate nohighlight">\(R_{adj}^2\)</span>=.680. Aunque el modelo completo tiene el mejor <span class="math notranslate nohighlight">\(R_{adj}^2\)</span> que el modelo reducido, no hay diferencia significativa entre dos modelos (<span class="math notranslate nohighlight">\(p\)</span>=.22). Preferimos un modelo más pequeño, así que eligimo el modelo reducido.</p>
+<p><strong>Conclusión</strong></p>
+<p>Ahora, revisamos las preguntas (de nuevo) y sacamos conclusiones.</p>
+<blockquote>
+<div><p>P1: ¿Existe una relación lineal entre el consumo de helados y la combinación del ingreso, la temperatura y el precio? (O podemos explicar el consumo de helados por el ingreso, la temperatura y el precio juntos?)</p>
+</div></blockquote>
+<p>Si, pero la contribución del precio no es significativa estadísticalmente. Podemos explicar el consumo de helados por el ingreso y la temperatura juntos suficientemente. Más específicamente, cuando el ingreso y la temperatura sean más altos, el consumo de helados se vuelve más alto.</p>
+<blockquote>
+<div><p>P2: ¿Qué variable es más importante para explicar el consumo de helados?</p>
+</div></blockquote>
+<p>La temperatura es más importante para explicar el consumo de helados, según su coeficiente (<span class="math notranslate nohighlight">\(\beta\)</span>=0.06) en un modelo con predictores ingreso y temperatura. Cuando la temperatura augmenta una desviación estándar controlando por ingreso, el consumo de helados augmenta 0.06 pintas per capita, en promedio.</p>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>Una convención: usamos <span class="math notranslate nohighlight">\(b\)</span> cuando los coeficientes no están estándarizados, y usamos <span class="math notranslate nohighlight">\(\beta\)</span> cuando los coeficientes están estándarizados.</p>
+</div>
 </section>
 </section>
 <section id="notas-finales">
 <h2><span class="section-number">16.5. </span>Notas finales<a class="headerlink" href="#notas-finales" title="Permalink to this heading">#</a></h2>
 <p>Terminamos el pipeline básico, pero tu viaje comienza aquí :)</p>
+<p>Si solo te importa el rendimiento de predición y no te importan si el modelo tiene sentido, el valor o la significancia de los coeficiente, a menudo basta con comprobar algunas métricas de fitness o predictiveness (e.g., <span class="math notranslate nohighlight">\(R^2\)</span>, <span class="math notranslate nohighlight">\(R_{adj}^2\)</span>, AIC, BIC, RMSE, AUC).</p>
 <p>Si tienes preguntas más abiertas, el pipeline se vuelve más complejo. Por ejemplo, para la pregunta</p>
 <blockquote>
 <div><p>¿Cúal es el mejor modelo de regresión para explicar el consumo de helados?</p>
@@ -3574,17 +3667,16 @@ Temperature #unique: 23
 <p>podemos aplicar un procesos para la seleción de modeo: selección de avance (forward selection), eliminación hacia atrás (backward elimination) o ambos. <a class="reference external" href="https://courses.lumenlearning.com/introstats1/chapter/model-selection/">Esta pagina</a> los explica claramente (puedes usar otras métricas como AIC, BIC no mencionadas en la pagina). Además, podemos considerar stepwise regresión para buscar un mejor modelo automáticamente (con precaución).</p>
 <p>Hay que tener precaución en estos procesos:</p>
 <ul class="simple">
-<li><p>Tenemos que considerar teoría y conocimiento común sobre las variables. A veces preferimos un modelo teóricamente sólido que un modelo más predictivo.</p></li>
+<li><p>Tenemos que considerar <strong>teoría</strong> relevante sobre las variables. Con mucha frecuencia preferimos un modelo teóricamente sólido y razonable que un modelo más predictivo.</p></li>
 <li><p>Si el valor o la significancia de los coeficientes nos importan (e.g., para explicar/entender un fenómeno), tenemos que examinar VIF y evitar multicolinealidad también.</p></li>
 </ul>
-<p>Además de los modelos mencionados brevemente en “Supuestos y requisitos para regresicón lineal”, hay otros tópicos que son importantes y te animamos a aprender:</p>
+<p>Además de los modelos mencionados brevemente en “Supuestos y requisitos para regresión lineal”, hay otros tópicos utiles sobre regresión lineal y te animamos a aprender:</p>
 <ul class="simple">
 <li><p>Regresión con variables categóricas</p></li>
 <li><p>Regresión con interacción</p></li>
 <li><p>Regresicón polinómica</p></li>
 </ul>
-<p>Vamos a ver regresiones para respuestas discretas muy pronto!</p>
-<p>Además, puedes usar <a class="reference external" href="https://www.statsmodels.org/stable/example_formulas.html"><code class="docutils literal notranslate"><span class="pre">statsmodels.formula.api</span></code></a> o R en lugar de lo que usamos arriba.</p>
+<p>Más adelante, veamos regresión lineal con funciones base y regularización y regresiones para respuestas discretas!</p>
 </section>
 </section>
 
@@ -3666,13 +3758,13 @@ Temperature #unique: 23
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-pipeline-basico-de-modelamiento-con-regresion-python">16.4. Un pipeline básico de modelamiento con regresión (Python)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pregunta-de-investigacion">16.4.1. Pregunta de investigación</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspeccion-preprocesamiento-y-analisis-exploratorio-de-datos">16.4.2. Inspección, preprocesamiento y análisis exploratorio de datos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajusta-el-modelo">16.4.3. Ajusta el modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajusta-entrena-el-modelo">16.4.3. Ajusta/entrena el modelo</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-los-residuos-diagnostico-residual">16.4.4. Examina los residuos (diagnóstico residual)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-vif">16.4.5. Examina VIF</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-model-fitness">16.4.6. Examina model fitness</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-coeficientes">16.4.7. Examina coeficientes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refinamiento-y-o-selecion-del-modelos">16.4.8. Refinamiento y/o seleción del modelos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">16.4.9. Conclusión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refinamiento-y-selecion-del-modelos">16.4.8. Refinamiento y seleción del modelos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-conclusion">16.4.9. Resumen &amp; conclusión</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-finales">16.5. Notas finales</a></li>
