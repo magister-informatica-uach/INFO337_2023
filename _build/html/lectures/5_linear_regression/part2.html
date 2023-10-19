@@ -358,21 +358,22 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conexion-con-mle">16.2.1. Conexión con MLE</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-estadisticas-de-ols">16.2.2. Propiedades estadísticas de OLS</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia-y-tests-de-hipotesis-para-ols">16.2.3. Inferencia y tests de hipótesis para OLS</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supuestos-y-requisitos-para-regresicon-lineal">16.2.4. Supuestos y requisitos para regresicón lineal</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-pipeline-basico-de-modelamiento-con-regresion-python">16.3. Un pipeline básico de modelamiento con regresión (Python)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pregunta-de-investigacion">16.3.1. Pregunta de investigación</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspeccion-preprocesamiento-y-analisis-exploratorio-de-datos">16.3.2. Inspección, preprocesamiento y análisis exploratorio de datos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajusta-el-modelo">16.3.3. Ajusta el modelo</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-los-residuos-diagnostico-residual">16.3.4. Examina los residuos (diagnóstico residual)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-vif">16.3.5. Examina VIF</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-model-fitness">16.3.6. Examina model fitness</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-coeficientes">16.3.7. Examina coeficientes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refinamiento-y-o-selecion-del-modelos">16.3.8. Refinamiento y/o seleción del modelos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">16.3.9. Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supuestos-y-requisitos-para-regresicon-lineal">16.3. Supuestos y requisitos para regresicón lineal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-pipeline-basico-de-modelamiento-con-regresion-python">16.4. Un pipeline básico de modelamiento con regresión (Python)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pregunta-de-investigacion">16.4.1. Pregunta de investigación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspeccion-preprocesamiento-y-analisis-exploratorio-de-datos">16.4.2. Inspección, preprocesamiento y análisis exploratorio de datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajusta-el-modelo">16.4.3. Ajusta el modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-los-residuos-diagnostico-residual">16.4.4. Examina los residuos (diagnóstico residual)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-vif">16.4.5. Examina VIF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-model-fitness">16.4.6. Examina model fitness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-coeficientes">16.4.7. Examina coeficientes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refinamiento-y-o-selecion-del-modelos">16.4.8. Refinamiento y/o seleción del modelos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">16.4.9. Conclusión</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-finales">16.5. Notas finales</a></li>
 </ul>
             </nav>
         </div>
@@ -2609,12 +2610,13 @@ Demostración<div class="sd-summary-down docutils">
 </li>
 </ul>
 </section>
+</section>
 <section id="supuestos-y-requisitos-para-regresicon-lineal">
-<h3><span class="section-number">16.2.4. </span>Supuestos y requisitos para regresicón lineal<a class="headerlink" href="#supuestos-y-requisitos-para-regresicon-lineal" title="Permalink to this heading">#</a></h3>
+<h2><span class="section-number">16.3. </span>Supuestos y requisitos para regresicón lineal<a class="headerlink" href="#supuestos-y-requisitos-para-regresicon-lineal" title="Permalink to this heading">#</a></h2>
 <p>Tenemos uno o dos requisitos:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(Y\)</span> es continuo.</p></li>
-<li><p><span class="math notranslate nohighlight">\(X\)</span> no tiene el problema de <strong>multicolinealidad</strong> (multicollinearity), si el valor o la significancia de los coeficientes te importan.</p>
+<li><p><span class="math notranslate nohighlight">\(X\)</span> no tiene el problema de <strong>multicolinealidad</strong> (multicollinearity), si el valor o la significancia de los coeficientes de los coeficientes te importan.</p>
 <ul>
 <li><p>La multicolinealidad sucede cuando uno o más de los predictores están altamente correlacionados con combinaciones lineales de otros predictores. Cuando esto sucede, el estimador OLS de los coeficientes tiende a ser muy impreciso, tiene una alta varianza (error estándar) y alto p-value, incluso si el tamaño de la muestra es grande.</p></li>
 <li><p>(Esto está relacionado con <span class="math notranslate nohighlight">\((\bf X^TX)^{-1}\)</span> cuando estimamos <span class="math notranslate nohighlight">\(\bf b\)</span>)</p></li>
@@ -2734,11 +2736,10 @@ Demostración<div class="sd-summary-down docutils">
 </div>
 <p>Veamos cómo examinar estos supuestos en un ejemplo.</p>
 </section>
-</section>
 <section id="un-pipeline-basico-de-modelamiento-con-regresion-python">
-<h2><span class="section-number">16.3. </span>Un pipeline básico de modelamiento con regresión (Python)<a class="headerlink" href="#un-pipeline-basico-de-modelamiento-con-regresion-python" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">16.4. </span>Un pipeline básico de modelamiento con regresión (Python)<a class="headerlink" href="#un-pipeline-basico-de-modelamiento-con-regresion-python" title="Permalink to this heading">#</a></h2>
 <section id="pregunta-de-investigacion">
-<h3><span class="section-number">16.3.1. </span>Pregunta de investigación<a class="headerlink" href="#pregunta-de-investigacion" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.4.1. </span>Pregunta de investigación<a class="headerlink" href="#pregunta-de-investigacion" title="Permalink to this heading">#</a></h3>
 <p>(También puedes generar la pregunta de investigación durante el análisis de datos exploratorios.)</p>
 <p>Tenemos una “teoría” / explicación hipotética de consumo de helado <em>a priori</em> y preguntamos:</p>
 <blockquote>
@@ -2747,10 +2748,10 @@ Demostración<div class="sd-summary-down docutils">
 <blockquote>
 <div><p>P2: ¿Qué variable es más importante para explicar el consumo de helados?</p>
 </div></blockquote>
-<p>Según las preguntas, nos importan los valores y la significancias de los coeficientes. Esto es diferente que una pregunta como “¿Cuál es el mejor modelo para explicar/predecir el consumo?”</p>
+<p>Según las preguntas, nos importan el valor o la significancia de los coeficientes. Esto es diferente que una pregunta como “¿Cuál es el mejor modelo para explicar/predecir el consumo?”</p>
 </section>
 <section id="inspeccion-preprocesamiento-y-analisis-exploratorio-de-datos">
-<h3><span class="section-number">16.3.2. </span>Inspección, preprocesamiento y análisis exploratorio de datos<a class="headerlink" href="#inspeccion-preprocesamiento-y-analisis-exploratorio-de-datos" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.4.2. </span>Inspección, preprocesamiento y análisis exploratorio de datos<a class="headerlink" href="#inspeccion-preprocesamiento-y-analisis-exploratorio-de-datos" title="Permalink to this heading">#</a></h3>
 <p>Tenemos un conjunto de datos donde cada fila corresponde a un día, y las columnas corresponden a:</p>
 <ul class="simple">
 <li><p>consumo de helados promedio (pintas per capita)</p></li>
@@ -3139,7 +3140,7 @@ Temperature #unique: 23
 </div></blockquote>
 </section>
 <section id="ajusta-el-modelo">
-<h3><span class="section-number">16.3.3. </span>Ajusta el modelo<a class="headerlink" href="#ajusta-el-modelo" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.4.3. </span>Ajusta el modelo<a class="headerlink" href="#ajusta-el-modelo" title="Permalink to this heading">#</a></h3>
 <p>El problema a modelar es el siguiente:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -3166,7 +3167,7 @@ Temperature #unique: 23
 </div>
 </section>
 <section id="examina-los-residuos-diagnostico-residual">
-<h3><span class="section-number">16.3.4. </span>Examina los residuos (diagnóstico residual)<a class="headerlink" href="#examina-los-residuos-diagnostico-residual" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.4.4. </span>Examina los residuos (diagnóstico residual)<a class="headerlink" href="#examina-los-residuos-diagnostico-residual" title="Permalink to this heading">#</a></h3>
 <p>Necesitamos generar las respuestas predichas para examinar los residuos. Para predecir utilizamos el método <a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.regression.linear_model.OLS.predict.html#statsmodels.regression.linear_model.OLS.predict"><code class="docutils literal notranslate"><span class="pre">predict</span></code></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3283,7 +3284,7 @@ Temperature #unique: 23
 </div></blockquote>
 </section>
 <section id="examina-vif">
-<h3><span class="section-number">16.3.5. </span>Examina VIF<a class="headerlink" href="#examina-vif" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.4.5. </span>Examina VIF<a class="headerlink" href="#examina-vif" title="Permalink to this heading">#</a></h3>
 <p>Según nuestra pregunta 2, tenemos que examinar VIF. La calculación de VIF requiere un constante (ya tenemos).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3347,7 +3348,7 @@ Temperature #unique: 23
 </div>
 </section>
 <section id="examina-model-fitness">
-<h3><span class="section-number">16.3.6. </span>Examina model fitness<a class="headerlink" href="#examina-model-fitness" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.4.6. </span>Examina model fitness<a class="headerlink" href="#examina-model-fitness" title="Permalink to this heading">#</a></h3>
 <p>Para nuestras preguntas, necesitamos un modelo con buena calidad. ¿Cómo podemos medir la calidad del modelo ajustado de forma cuantitativa? (model fitness)</p>
 <p>Podemos empezar mirando la gráfica de dispersión entre <span class="math notranslate nohighlight">\(Y\)</span> y <span class="math notranslate nohighlight">\(\hat Y\)</span>:</p>
 <div class="cell docutils container">
@@ -3461,7 +3462,7 @@ Temperature #unique: 23
 </div></blockquote>
 </section>
 <section id="examina-coeficientes">
-<h3><span class="section-number">16.3.7. </span>Examina coeficientes<a class="headerlink" href="#examina-coeficientes" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.4.7. </span>Examina coeficientes<a class="headerlink" href="#examina-coeficientes" title="Permalink to this heading">#</a></h3>
 <p>Ahora podemos examinar los coeficientes.</p>
 <p>¿Qué tan significativa es la contribución de cada predictor a la predicción controlando otros predictores?</p>
 <blockquote>
@@ -3470,8 +3471,8 @@ Temperature #unique: 23
 <p><strong>Puedes responder a las preguntas P1 y P2?</strong></p>
 </section>
 <section id="refinamiento-y-o-selecion-del-modelos">
-<h3><span class="section-number">16.3.8. </span>Refinamiento y/o seleción del modelos<a class="headerlink" href="#refinamiento-y-o-selecion-del-modelos" title="Permalink to this heading">#</a></h3>
-<p>Según los t-tests arriba, veamos el modelo sin “price”:</p>
+<h3><span class="section-number">16.4.8. </span>Refinamiento y/o seleción del modelos<a class="headerlink" href="#refinamiento-y-o-selecion-del-modelos" title="Permalink to this heading">#</a></h3>
+<p>Usando los p-values de t-tests arriba, podemos eliminar “price”:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X3</span> <span class="o">=</span> <span class="n">df_st</span><span class="p">[[</span><span class="s2">&quot;Income&quot;</span><span class="p">,</span> <span class="s2">&quot;Temperature&quot;</span><span class="p">]]</span>
@@ -3556,13 +3557,26 @@ Temperature #unique: 23
 <blockquote>
 <div><p>El modelo completo original tiene el mejor <span class="math notranslate nohighlight">\(R^2\)</span> adjustado. Podemos selecionarlo.</p>
 </div></blockquote>
-<p>También podemos selectionar el modelo según AIC o BIC.</p>
-<p>Hay muchas otras maneras de seleción de modelos (o seleción de features), e.g., <a class="reference external" href="https://online.stat.psu.edu/stat501/lesson/6/6.2">F-test lineal general</a>, <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html">cross-validation</a>.</p>
+<p>También podemos selectionar el modelo según AIC, BIC, <a class="reference external" href="https://online.stat.psu.edu/stat501/lesson/6/6.2">F-test lineal general</a>, <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html">cross-validation</a>, etc.</p>
 </section>
 <section id="conclusion">
-<h3><span class="section-number">16.3.9. </span>Conclusión<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">16.4.9. </span>Conclusión<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h3>
 <p>Ahora, revisa las preguntas de nuevo y saca conclusiones.</p>
+</section>
+</section>
+<section id="notas-finales">
+<h2><span class="section-number">16.5. </span>Notas finales<a class="headerlink" href="#notas-finales" title="Permalink to this heading">#</a></h2>
 <p>Terminamos el pipeline básico, pero tu viaje comienza aquí :)</p>
+<p>Si tienes preguntas más abiertas, el pipeline se vuelve más complejo. Por ejemplo, para la pregunta</p>
+<blockquote>
+<div><p>¿Cúal es el mejor modelo de regresión para explicar el consumo de helados?</p>
+</div></blockquote>
+<p>podemos aplicar un procesos para la seleción de modeo: selección de avance (forward selection), eliminación hacia atrás (backward elimination) o ambos. <a class="reference external" href="https://courses.lumenlearning.com/introstats1/chapter/model-selection/">Esta pagina</a> los explica claramente (puedes usar otras métricas como AIC, BIC no mencionadas en la pagina). Además, podemos considerar stepwise regresión para buscar un mejor modelo automáticamente (con precaución).</p>
+<p>Hay que tener precaución en estos procesos:</p>
+<ul class="simple">
+<li><p>Tenemos que considerar teoría y conocimiento común sobre las variables. A veces preferimos un modelo teóricamente sólido que un modelo más predictivo.</p></li>
+<li><p>Si el valor o la significancia de los coeficientes nos importan (e.g., para explicar/entender un fenómeno), tenemos que examinar VIF y evitar multicolinealidad también.</p></li>
+</ul>
 <p>Además de los modelos mencionados brevemente en “Supuestos y requisitos para regresicón lineal”, hay otros tópicos que son importantes y te animamos a aprender:</p>
 <ul class="simple">
 <li><p>Regresión con variables categóricas</p></li>
@@ -3570,7 +3584,7 @@ Temperature #unique: 23
 <li><p>Regresicón polinómica</p></li>
 </ul>
 <p>Vamos a ver regresiones para respuestas discretas muy pronto!</p>
-</section>
+<p>Además, puedes usar <a class="reference external" href="https://www.statsmodels.org/stable/example_formulas.html"><code class="docutils literal notranslate"><span class="pre">statsmodels.formula.api</span></code></a> o R en lugar de lo que usamos arriba.</p>
 </section>
 </section>
 
@@ -3646,21 +3660,22 @@ Temperature #unique: 23
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conexion-con-mle">16.2.1. Conexión con MLE</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-estadisticas-de-ols">16.2.2. Propiedades estadísticas de OLS</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia-y-tests-de-hipotesis-para-ols">16.2.3. Inferencia y tests de hipótesis para OLS</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supuestos-y-requisitos-para-regresicon-lineal">16.2.4. Supuestos y requisitos para regresicón lineal</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-pipeline-basico-de-modelamiento-con-regresion-python">16.3. Un pipeline básico de modelamiento con regresión (Python)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pregunta-de-investigacion">16.3.1. Pregunta de investigación</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspeccion-preprocesamiento-y-analisis-exploratorio-de-datos">16.3.2. Inspección, preprocesamiento y análisis exploratorio de datos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajusta-el-modelo">16.3.3. Ajusta el modelo</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-los-residuos-diagnostico-residual">16.3.4. Examina los residuos (diagnóstico residual)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-vif">16.3.5. Examina VIF</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-model-fitness">16.3.6. Examina model fitness</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-coeficientes">16.3.7. Examina coeficientes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refinamiento-y-o-selecion-del-modelos">16.3.8. Refinamiento y/o seleción del modelos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">16.3.9. Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supuestos-y-requisitos-para-regresicon-lineal">16.3. Supuestos y requisitos para regresicón lineal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-pipeline-basico-de-modelamiento-con-regresion-python">16.4. Un pipeline básico de modelamiento con regresión (Python)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pregunta-de-investigacion">16.4.1. Pregunta de investigación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspeccion-preprocesamiento-y-analisis-exploratorio-de-datos">16.4.2. Inspección, preprocesamiento y análisis exploratorio de datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajusta-el-modelo">16.4.3. Ajusta el modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-los-residuos-diagnostico-residual">16.4.4. Examina los residuos (diagnóstico residual)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-vif">16.4.5. Examina VIF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-model-fitness">16.4.6. Examina model fitness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examina-coeficientes">16.4.7. Examina coeficientes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refinamiento-y-o-selecion-del-modelos">16.4.8. Refinamiento y/o seleción del modelos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">16.4.9. Conclusión</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-finales">16.5. Notas finales</a></li>
 </ul>
   </nav></div>
 
