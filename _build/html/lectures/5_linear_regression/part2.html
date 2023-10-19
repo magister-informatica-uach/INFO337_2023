@@ -3456,14 +3456,17 @@ Temperature #unique: 23
 </tr>
 </table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
 </div>
-<p>En base al estadístico F, se rechaza la hipótesis de que todos los parámetros (slopes) son zeros (nulos).</p>
-<p>El <span class="math notranslate nohighlight">\(R^2\)</span> parece bueno también.</p>
+<blockquote>
+<div><p>En base al estadístico F, se rechaza la hipótesis de que todos los parámetros (slopes) son zeros (nulos). El <span class="math notranslate nohighlight">\(R^2\)</span> parece bueno también.</p>
+</div></blockquote>
 </section>
 <section id="examina-coeficientes">
 <h3><span class="section-number">16.3.7. </span>Examina coeficientes<a class="headerlink" href="#examina-coeficientes" title="Permalink to this heading">#</a></h3>
 <p>Ahora podemos examinar los coeficientes.</p>
 <p>¿Qué tan significativa es la contribución de cada predictor a la predicción controlando otros predictores?</p>
-<p>En base a los p-values de t-tests de los coeficientes, se rechanza la hipótesis de que el parámetro asociado a temperatura e ingreso son zeros (nulos). No hay suficiente evidencia para rechazar en el caso del precio y la constante.</p>
+<blockquote>
+<div><p>En base a los p-values de t-tests de los coeficientes, se rechanza la hipótesis de que el parámetro asociado a temperatura e ingreso son zeros (nulos). No hay suficiente evidencia para rechazar en el caso del precio y la constante.</p>
+</div></blockquote>
 <p><strong>Puedes responder a las preguntas P1 y P2?</strong></p>
 </section>
 <section id="refinamiento-y-o-selecion-del-modelos">
@@ -3550,12 +3553,15 @@ Temperature #unique: 23
 <p class="admonition-title">Advertencia</p>
 <p>A diferencia del <span class="math notranslate nohighlight">\(R^2\)</span>, el <span class="math notranslate nohighlight">\(R^2\)</span> ajustado no está acotado entre 0 y 1 y no debe interpretarse de manera similar a la medida del <span class="math notranslate nohighlight">\(R^2\)</span> (no refleja qué porcentaje de error se está explicando).</p>
 </div>
-<p>El modelo completo original tiene el mejor <span class="math notranslate nohighlight">\(R^2\)</span> adjustado. Podemos selecionarlo. Pero también podemos selectionar el modelo según AIC o BIC.</p>
+<blockquote>
+<div><p>El modelo completo original tiene el mejor <span class="math notranslate nohighlight">\(R^2\)</span> adjustado. Podemos selecionarlo.</p>
+</div></blockquote>
+<p>También podemos selectionar el modelo según AIC o BIC.</p>
 <p>Hay muchas otras maneras de seleción de modelos (o seleción de features), e.g., <a class="reference external" href="https://online.stat.psu.edu/stat501/lesson/6/6.2">F-test lineal general</a>, <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html">cross-validation</a>.</p>
 </section>
 <section id="conclusion">
 <h3><span class="section-number">16.3.9. </span>Conclusión<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h3>
-<p>Ahora, puedes revisar las preguntas y responder de nuevo?</p>
+<p>Ahora, revisa las preguntas de nuevo y saca conclusiones.</p>
 <p>Terminamos el pipeline básico, pero tu viaje comienza aquí :)</p>
 <p>Además de los modelos mencionados brevemente en “Supuestos y requisitos para regresicón lineal”, hay otros tópicos que son importantes y te animamos a aprender:</p>
 <ul class="simple">

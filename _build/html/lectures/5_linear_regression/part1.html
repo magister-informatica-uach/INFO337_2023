@@ -2703,17 +2703,14 @@ Demostración<div class="sd-summary-down docutils">
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">residuals_s</span> <span class="o">=</span> <span class="p">(</span><span class="n">residuals</span> <span class="o">-</span> <span class="n">residuals</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">residuals</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> 
-<span class="n">sm</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span><span class="n">residuals_s</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;45&#39;</span><span class="p">)</span>  <span class="c1">#**</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">shapiro</span><span class="p">(</span><span class="n">residuals_s</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">shapiro</span><span class="p">(</span><span class="n">residuals</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ShapiroResult(statistic=0.9754847288131714, pvalue=0.783708930015564)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ShapiroResult(statistic=0.9754845499992371, pvalue=0.7837038040161133)
 </pre></div>
 </div>
-<img alt="../../_images/3574cf3f050a07c84752ad980089d37e93e056ef3d09dc4940111ab79265530e.png" src="../../_images/3574cf3f050a07c84752ad980089d37e93e056ef3d09dc4940111ab79265530e.png" />
 </div>
 </div>
 <p>En general buscamos residuos que:</p>
